@@ -1,11 +1,33 @@
 {
-  "framework": null,
-  "installCommand": "npm install && cd AP/frontend && npm install",
-  "buildCommand": "cd AP/frontend && npm run build",
-  "outputDirectory": "AP/frontend/dist",
-  "rewrites": [
-    { "source": "/health", "destination": "/api" },
-    { "source": "/api/(.*)", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/index.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "AP/backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "AP/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/health",
+      "dest": "AP/backend/server.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "AP/backend/server.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "AP/frontend/index.html"
+    }
   ]
 }

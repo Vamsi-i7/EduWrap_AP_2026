@@ -4,6 +4,8 @@ const request = require('supertest');
 const app = require('../src/app');
 const db = require('../src/config/db');
 
+const { getTodayIST } = require('../src/utils/dateUtils');
+
 describe('Dashboard, Habit & Leaderboard API', () => {
   let userToken = null;
   let userId = null;
@@ -48,12 +50,13 @@ describe('Dashboard, Habit & Leaderboard API', () => {
     );
 
     // Record sample daily activity
+    const todayIST = getTodayIST();
     await db.query(
       `INSERT INTO daily_activity (user_id, activity_date, cards_reviewed, sessions_count)
-       VALUES ($1, CURRENT_DATE, 15, 1)
+       VALUES ($1, $2, 15, 1)
        ON CONFLICT (user_id, activity_date)
        DO UPDATE SET cards_reviewed = 15;`,
-      [userId]
+      [userId, todayIST]
     );
   });
 

@@ -72,6 +72,23 @@ if (distPath) {
   });
 }
 
+// Welcome / root status if not serving static frontend
+app.get('/', (req, res, next) => {
+  if (distPath && fs.existsSync(path.join(distPath, 'index.html'))) {
+    return res.sendFile(path.join(distPath, 'index.html'));
+  }
+  res.status(200).json({
+    service: 'eduwrap-backend',
+    status: 'online',
+    version: '2.0.0',
+    database: 'Neon PostgreSQL (Connected)',
+    endpoints: {
+      health: '/health',
+      status: '/api/status',
+    },
+  });
+});
+
 // 404 Handler for unmatched routes
 app.use((req, res, next) => {
   res.status(404).json({
