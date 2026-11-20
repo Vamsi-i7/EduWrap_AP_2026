@@ -23,6 +23,10 @@
       "dest": "AP/backend/server.js"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/AP/frontend/assets/$1"
+    },
+    {
       "handle": "filesystem"
     },
     {
