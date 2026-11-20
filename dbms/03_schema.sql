@@ -187,3 +187,35 @@ CREATE TABLE user_badges (
     awarded_at    timestamptz    NOT NULL DEFAULT now(),
     PRIMARY KEY (user_id, badge_id)
 );
+
+CREATE TABLE daily_activity (
+    user_id          integer        NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+    activity_date    date           NOT NULL,
+    cards_reviewed   integer        NOT NULL DEFAULT 0,
+    answers_posted   integer        NOT NULL DEFAULT 0,
+    sessions_count   integer        NOT NULL DEFAULT 0,
+    PRIMARY KEY (user_id, activity_date),
+    CONSTRAINT ck_da_cards_reviewed CHECK (cards_reviewed >= 0),
+    CONSTRAINT ck_da_answers_posted CHECK (answers_posted >= 0),
+    CONSTRAINT ck_da_sessions_count CHECK (sessions_count >= 0)
+);
+
+-- ============================================================================
+-- DEFAULT SEED DATA
+-- ============================================================================
+INSERT INTO subjects (name) VALUES
+    ('Database Systems'),
+    ('Algorithms & Data Structures'),
+    ('Computer Architecture'),
+    ('Operating Systems Internal'),
+    ('Machine Learning Systems')
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO badges (name, description) VALUES
+    ('First Answer', 'Post your first answer to a doubt'),
+    ('7-Day Streak', 'Maintain a study streak for 7 consecutive days'),
+    ('Helper', 'Have 5 answers marked as accepted'),
+    ('Century', 'Review 100 cards')
+ON CONFLICT (name) DO NOTHING;
+
+
