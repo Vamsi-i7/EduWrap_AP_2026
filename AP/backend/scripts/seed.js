@@ -69,7 +69,8 @@ async function runSeed() {
       ('Shreya Das', 'shreya@eduwrap.io', $1, 30),
       ('Aryan Sharma', 'aryan@eduwrap.io', $1, 20),
       ('Diya Patel', 'diya@eduwrap.io', $1, 10),
-      ('Kabir Mehta', 'kabir@eduwrap.io', $1, 50)
+      ('Kabir Mehta', 'kabir@eduwrap.io', $1, 50),
+      ('EduWrap Team', 'team@eduwrap.io', $1, 20)
     RETURNING user_id, name, email;
   `;
   const usersRes = await db.query(userSql, [passwordHash]);
@@ -79,6 +80,7 @@ async function runSeed() {
   const aryan = users[2];
   const diya = users[3];
   const kabir = users[4];
+  const eduwrapTeam = users[5];
 
   // 6. Insert Study Rooms
   console.log('🏛️ Seeding Study Rooms...');
@@ -190,6 +192,55 @@ async function runSeed() {
   ];
   for (const c of cardsVM) {
     await db.query(`INSERT INTO cards (deck_id, front, back) VALUES ($1, $2, $3)`, [deckVM.deck_id, c.front, c.back]);
+  }
+
+  // 8b. Public Starter Decks for Onboarding (owned by EduWrap Team)
+  console.log('🌟 Seeding Public Starter Decks for Onboarding...');
+  const starterDBMS = (await db.query(`
+    INSERT INTO decks (title, description, subject_id, visibility, owner_id, room_id)
+    VALUES ('DBMS & SQL Quickstart (Starter)', 'Essential starter cards for normalization (1NF-BCNF), ACID properties, and SQL Joins.', $1, 'public', $2, NULL)
+    RETURNING deck_id, title;
+  `, [subjects['Database Systems'], eduwrapTeam.user_id])).rows[0];
+
+  const starterCardsDBMS = [
+    { front: 'What is 1NF (First Normal Form)?', back: 'All attribute values are atomic (indivisible) and there are no repeating groups or multi-valued fields.' },
+    { front: 'What is 2NF (Second Normal Form)?', back: 'Table is in 1NF and every non-prime attribute is fully functionally dependent on the primary key (no partial dependencies).' },
+    { front: 'What is 3NF (Third Normal Form)?', back: 'Table is in 2NF and no non-prime attribute depends transitively on the primary key (no non-key to non-key dependencies).' },
+    { front: 'What is BCNF (Boyce-Codd Normal Form)?', back: 'For every non-trivial functional dependency X -> Y, X must be a superkey.' },
+    { front: 'Difference between INNER JOIN and LEFT JOIN?', back: 'INNER JOIN returns only matching rows from both tables. LEFT JOIN returns all rows from the left table and matched rows from the right table (or NULLs).' }
+  ];
+  for (const c of starterCardsDBMS) {
+    await db.query(`INSERT INTO cards (deck_id, front, back) VALUES ($1, $2, $3)`, [starterDBMS.deck_id, c.front, c.back]);
+  }
+
+  const starterDSA = (await db.query(`
+    INSERT INTO decks (title, description, subject_id, visibility, owner_id, room_id)
+    VALUES ('Data Structures Fundamentals (Starter)', 'Quick recall on time complexity, heaps, binary search trees, and graphs.', $1, 'public', $2, NULL)
+    RETURNING deck_id, title;
+  `, [subjects['Algorithms & Data Structures'], eduwrapTeam.user_id])).rows[0];
+
+  const starterCardsDSA = [
+    { front: 'What is the average and worst-case time complexity of QuickSort?', back: 'Average: O(N log N). Worst: O(N^2) when poor pivots are chosen consistently.' },
+    { front: 'What defines a Min-Heap?', back: 'A complete binary tree where the key at the root is less than or equal to the keys of its children.' },
+    { front: 'What is the difference between BFS and DFS traversal?', back: 'BFS explores vertices level by level using a Queue (O(V+E)). DFS explores as deep as possible before backtracking using a Stack / Recursion.' }
+  ];
+  for (const c of starterCardsDSA) {
+    await db.query(`INSERT INTO cards (deck_id, front, back) VALUES ($1, $2, $3)`, [starterDSA.deck_id, c.front, c.back]);
+  }
+
+  const starterOS = (await db.query(`
+    INSERT INTO decks (title, description, subject_id, visibility, owner_id, room_id)
+    VALUES ('Operating Systems Core (Starter)', 'Processes, threads, deadlock conditions, and page replacement basics.', $1, 'public', $2, NULL)
+    RETURNING deck_id, title;
+  `, [subjects['Operating Systems Internal'], eduwrapTeam.user_id])).rows[0];
+
+  const starterCardsOS = [
+    { front: 'What are the 4 Coffman conditions required for Deadlock?', back: '1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait' },
+    { front: 'What is the difference between a Process and a Thread?', back: 'A process has its own independent address space and resources. A thread shares memory (heap, code, global data) with other threads of the same process.' },
+    { front: 'What is the purpose of the LRU page replacement algorithm?', back: 'Replaces the page in physical memory that has not been referenced for the longest period of time.' }
+  ];
+  for (const c of starterCardsOS) {
+    await db.query(`INSERT INTO cards (deck_id, front, back) VALUES ($1, $2, $3)`, [starterOS.deck_id, c.front, c.back]);
   }
 
   // 9. Insert Doubts & Answers
