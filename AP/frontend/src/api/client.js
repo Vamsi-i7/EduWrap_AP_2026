@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '') + '/api';
 
 async function request(endpoint, options = {}) {
   const token = localStorage.getItem('eduwrap_token');
@@ -18,6 +18,15 @@ async function request(endpoint, options = {}) {
   }
 
   const response = await fetch(`${API_BASE}${endpoint}`, config);
+
+  const contentType = response.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    if (!response.ok) {
+      throw new Error(`Server returned error status ${response.status}`);
+    }
+    throw new Error('API returned non-JSON response. Ensure VITE_API_URL is configured correctly in production.');
+  }
+
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {

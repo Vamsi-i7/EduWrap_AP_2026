@@ -25,4 +25,7 @@ lerna-debug.log*
 .agents/
 dist/
 build/
+backups/
+*.dump
+
 

@@ -8,8 +8,25 @@ const routes = require('./routes');
 const app = express();
 
 // Middleware setup
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  ...(env.clientOrigin ? env.clientOrigin.split(',').map((o) => o.trim()) : []),
+];
+
 app.use(cors({
-  origin: env.clientOrigin === '*' ? true : [env.clientOrigin, 'http://localhost:3000', 'http://localhost:5173'],
+  origin: (origin, callback) => {
+    // Allow non-browser requests or same-origin requests where origin is undefined
+    if (!origin) return callback(null, true);
+    if (
+      env.clientOrigin === '*' ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app')
+    ) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
   credentials: true,
 }));
 
