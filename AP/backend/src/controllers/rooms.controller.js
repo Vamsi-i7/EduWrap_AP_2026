@@ -228,7 +228,7 @@ async function getRoom(req, res, next) {
 
     // Privacy rule: private room contents accessible only to members
     if (room.visibility === 'private' && !isMember) {
-      throw new ForbiddenError('This room is private. You must join via invite code to view its contents.');
+      throw new ForbiddenError('This room is private. You must be a member to access its contents.');
     }
 
     return success(res, {

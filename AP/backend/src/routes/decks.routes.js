@@ -8,6 +8,7 @@ router.post('/', authenticate, decksController.createDeck);
 
 router.get('/:id', optionalAuth, decksController.getDeck);
 router.patch('/:id', authenticate, decksController.updateDeck);
+router.put('/:id', authenticate, decksController.updateDeck);
 router.delete('/:id', authenticate, decksController.deleteDeck);
 
 // Card subroutes

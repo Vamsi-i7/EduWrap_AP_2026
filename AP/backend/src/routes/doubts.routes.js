@@ -18,6 +18,7 @@ router.post('/:id/answers', authenticate, doubtsController.createAnswer);
 const answersRouter = express.Router();
 answersRouter.post('/:id/upvote', authenticate, doubtsController.toggleUpvote);
 answersRouter.post('/:id/accept', authenticate, doubtsController.toggleAcceptAnswer);
+answersRouter.put('/:id/accept', authenticate, doubtsController.toggleAcceptAnswer);
 answersRouter.post('/:id/save-as-card', authenticate, doubtsController.saveAsCard);
 answersRouter.delete('/:id', authenticate, doubtsController.deleteAnswer);
 

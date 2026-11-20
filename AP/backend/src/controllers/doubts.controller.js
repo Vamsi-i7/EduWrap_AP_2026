@@ -96,15 +96,26 @@ async function listDoubts(req, res, next) {
     const offset = (parsedPage - 1) * parsedLimit;
 
     // Conditions: user must belong to the room
-    let conditions = [
-      `rm.user_id = $1`
-    ];
+    let conditions = [];
     const params = [userId];
     let pIdx = 2;
 
     if (room_id) {
+      const parsedRoomId = parseInt(room_id, 10);
+      const roomCheck = await db.query(
+        'SELECT visibility, (SELECT 1 FROM room_members WHERE room_id = $1 AND user_id = $2) AS is_member FROM rooms WHERE room_id = $1',
+        [parsedRoomId, userId]
+      );
+      if (roomCheck.rows.length === 0) {
+        throw new NotFoundError('Room not found');
+      }
+      if (roomCheck.rows[0].visibility === 'private' && !roomCheck.rows[0].is_member) {
+        throw new ForbiddenError('This room is private. You must be a member to access its contents.');
+      }
       conditions.push(`d.room_id = $${pIdx++}`);
-      params.push(parseInt(room_id, 10));
+      params.push(parsedRoomId);
+    } else {
+      conditions.push(`rm.user_id = $1`);
     }
     if (q && q.trim()) {
       conditions.push(`(d.title ILIKE $${pIdx} OR d.body ILIKE $${pIdx})`);
