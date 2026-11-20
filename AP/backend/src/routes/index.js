@@ -20,6 +20,14 @@ router.get('/status', (req, res) => {
   });
 });
 
+router.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'eduwrap-backend',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 router.use('/auth', authRoutes);
 router.use('/users', usersRoutes);
 router.use('/rooms', roomsRoutes);

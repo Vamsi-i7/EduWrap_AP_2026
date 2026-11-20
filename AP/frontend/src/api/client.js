@@ -24,7 +24,7 @@ async function request(endpoint, options = {}) {
     if (!response.ok) {
       throw new Error(`Server returned error status ${response.status}`);
     }
-    throw new Error('API returned non-JSON response. Ensure VITE_API_URL is configured correctly in production.');
+    throw new Error('API returned non-JSON response. Ensure the backend service is responding with valid JSON.');
   }
 
   const data = await response.json().catch(() => ({}));
