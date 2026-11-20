@@ -49,6 +49,29 @@ app.get('/health', (req, res) => {
 // API Routes
 app.use('/api', routes);
 
+// Serve frontend static assets in production
+const fs = require('fs');
+const path = require('path');
+const candidateDistPaths = [
+  path.join(__dirname, '../../frontend/dist'),
+  path.join(__dirname, '../../../AP/frontend/dist'),
+  path.join(process.cwd(), 'AP/frontend/dist'),
+  path.join(process.cwd(), 'dist'),
+];
+const distPath = candidateDistPaths.find((p) => fs.existsSync(p));
+
+if (distPath) {
+  app.use(express.static(distPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path === '/health') {
+      return next();
+    }
+    res.sendFile(path.join(distPath, 'index.html'), (err) => {
+      if (err) next();
+    });
+  });
+}
+
 // 404 Handler for unmatched routes
 app.use((req, res, next) => {
   res.status(404).json({
