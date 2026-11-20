@@ -1,3 +1,11 @@
 {
-  "buildCommand": "npm run build"
+  "framework": null,
+  "installCommand": "npm install && cd AP/frontend && npm install",
+  "buildCommand": "cd AP/frontend && npm run build",
+  "outputDirectory": "AP/frontend/dist",
+  "rewrites": [
+    { "source": "/health", "destination": "/api" },
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
