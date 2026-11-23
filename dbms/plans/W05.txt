@@ -1,0 +1,35 @@
+=== W05 run 1 ===
+Insert on rooms  (cost=0.00..0.01 rows=1 width=148) (actual time=0.103..0.103 rows=1.00 loops=1)
+  Buffers: shared hit=74
+  ->  Result  (cost=0.00..0.01 rows=1 width=148) (actual time=0.014..0.015 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.034 ms
+Trigger for constraint rooms_subject_id_fkey: time=0.190 calls=1
+Trigger for constraint rooms_owner_id_fkey: time=0.098 calls=1
+Execution Time: 0.407 ms
+
+=== W05 run 2 ===
+Insert on rooms  (cost=0.00..0.01 rows=1 width=148) (actual time=0.120..0.120 rows=1.00 loops=1)
+  Buffers: shared hit=74
+  ->  Result  (cost=0.00..0.01 rows=1 width=148) (actual time=0.018..0.018 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.038 ms
+Trigger for constraint rooms_subject_id_fkey: time=0.255 calls=1
+Trigger for constraint rooms_owner_id_fkey: time=0.118 calls=1
+Execution Time: 0.514 ms
+
+=== W05 run 3 ===
+Insert on rooms  (cost=0.00..0.01 rows=1 width=148) (actual time=0.106..0.107 rows=1.00 loops=1)
+  Buffers: shared hit=74
+  ->  Result  (cost=0.00..0.01 rows=1 width=148) (actual time=0.015..0.015 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.033 ms
+Trigger for constraint rooms_subject_id_fkey: time=0.195 calls=1
+Trigger for constraint rooms_owner_id_fkey: time=0.101 calls=1
+Execution Time: 0.421 ms

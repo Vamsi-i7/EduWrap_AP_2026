@@ -1,0 +1,122 @@
+=== R25 run 1 ===
+Limit  (cost=77.62..77.63 rows=3 width=144) (actual time=0.058..0.059 rows=14.00 loops=1)
+  Buffers: shared hit=29
+  ->  Sort  (cost=77.62..77.63 rows=3 width=144) (actual time=0.057..0.058 rows=14.00 loops=1)
+        Sort Key: pe.created_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=29
+        ->  Nested Loop Left Join  (cost=18.36..77.60 rows=3 width=144) (actual time=0.033..0.047 rows=14.00 loops=1)
+              Buffers: shared hit=26
+              ->  Nested Loop Left Join  (cost=18.21..76.95 rows=3 width=116) (actual time=0.028..0.038 rows=14.00 loops=1)
+                    Buffers: shared hit=14
+                    ->  Nested Loop Left Join  (cost=18.06..56.44 rows=3 width=116) (actual time=0.020..0.027 rows=14.00 loops=1)
+                          Buffers: shared hit=2
+                          ->  Hash Right Join  (cost=17.91..35.92 rows=3 width=88) (actual time=0.019..0.023 rows=14.00 loops=1)
+                                Hash Cond: (voter.user_id = pe.voter_id)
+                                Buffers: shared hit=2
+                                ->  Seq Scan on users voter  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.004 rows=6.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=17.88..17.88 rows=3 width=60) (actual time=0.012..0.012 rows=14.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on points_events pe  (cost=0.00..17.88 rows=3 width=60) (actual time=0.006..0.007 rows=14.00 loops=1)
+                                            Filter: (user_id = 1)
+                                            Rows Removed by Filter: 15
+                                            Buffers: shared hit=1
+                          ->  Index Scan using doubts_pkey on doubts d  (cost=0.15..6.83 rows=1 width=36) (actual time=0.000..0.000 rows=0.00 loops=14)
+                                Index Cond: (doubt_id = pe.doubt_id)
+                                Index Searches: 0
+                    ->  Index Scan using answers_pkey on answers a  (cost=0.15..6.83 rows=1 width=8) (actual time=0.001..0.001 rows=0.43 loops=14)
+                          Index Cond: (answer_id = pe.answer_id)
+                          Index Searches: 6
+                          Buffers: shared hit=12
+              ->  Index Scan using doubts_pkey on doubts ans_d  (cost=0.15..0.22 rows=1 width=36) (actual time=0.000..0.000 rows=0.43 loops=14)
+                    Index Cond: (doubt_id = a.doubt_id)
+                    Index Searches: 6
+                    Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=346
+Planning Time: 0.610 ms
+Execution Time: 0.089 ms
+
+=== R25 run 2 ===
+Limit  (cost=77.62..77.63 rows=3 width=144) (actual time=0.045..0.046 rows=14.00 loops=1)
+  Buffers: shared hit=29
+  ->  Sort  (cost=77.62..77.63 rows=3 width=144) (actual time=0.044..0.045 rows=14.00 loops=1)
+        Sort Key: pe.created_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=29
+        ->  Nested Loop Left Join  (cost=18.36..77.60 rows=3 width=144) (actual time=0.025..0.036 rows=14.00 loops=1)
+              Buffers: shared hit=26
+              ->  Nested Loop Left Join  (cost=18.21..76.95 rows=3 width=116) (actual time=0.021..0.029 rows=14.00 loops=1)
+                    Buffers: shared hit=14
+                    ->  Nested Loop Left Join  (cost=18.06..56.44 rows=3 width=116) (actual time=0.017..0.022 rows=14.00 loops=1)
+                          Buffers: shared hit=2
+                          ->  Hash Right Join  (cost=17.91..35.92 rows=3 width=88) (actual time=0.015..0.019 rows=14.00 loops=1)
+                                Hash Cond: (voter.user_id = pe.voter_id)
+                                Buffers: shared hit=2
+                                ->  Seq Scan on users voter  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=17.88..17.88 rows=3 width=60) (actual time=0.009..0.009 rows=14.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on points_events pe  (cost=0.00..17.88 rows=3 width=60) (actual time=0.004..0.005 rows=14.00 loops=1)
+                                            Filter: (user_id = 1)
+                                            Rows Removed by Filter: 15
+                                            Buffers: shared hit=1
+                          ->  Index Scan using doubts_pkey on doubts d  (cost=0.15..6.83 rows=1 width=36) (actual time=0.000..0.000 rows=0.00 loops=14)
+                                Index Cond: (doubt_id = pe.doubt_id)
+                                Index Searches: 0
+                    ->  Index Scan using answers_pkey on answers a  (cost=0.15..6.83 rows=1 width=8) (actual time=0.000..0.000 rows=0.43 loops=14)
+                          Index Cond: (answer_id = pe.answer_id)
+                          Index Searches: 6
+                          Buffers: shared hit=12
+              ->  Index Scan using doubts_pkey on doubts ans_d  (cost=0.15..0.22 rows=1 width=36) (actual time=0.000..0.000 rows=0.43 loops=14)
+                    Index Cond: (doubt_id = a.doubt_id)
+                    Index Searches: 6
+                    Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=346
+Planning Time: 0.543 ms
+Execution Time: 0.072 ms
+
+=== R25 run 3 ===
+Limit  (cost=77.62..77.63 rows=3 width=144) (actual time=0.042..0.044 rows=14.00 loops=1)
+  Buffers: shared hit=29
+  ->  Sort  (cost=77.62..77.63 rows=3 width=144) (actual time=0.042..0.043 rows=14.00 loops=1)
+        Sort Key: pe.created_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=29
+        ->  Nested Loop Left Join  (cost=18.36..77.60 rows=3 width=144) (actual time=0.024..0.033 rows=14.00 loops=1)
+              Buffers: shared hit=26
+              ->  Nested Loop Left Join  (cost=18.21..76.95 rows=3 width=116) (actual time=0.020..0.028 rows=14.00 loops=1)
+                    Buffers: shared hit=14
+                    ->  Nested Loop Left Join  (cost=18.06..56.44 rows=3 width=116) (actual time=0.016..0.021 rows=14.00 loops=1)
+                          Buffers: shared hit=2
+                          ->  Hash Right Join  (cost=17.91..35.92 rows=3 width=88) (actual time=0.015..0.018 rows=14.00 loops=1)
+                                Hash Cond: (voter.user_id = pe.voter_id)
+                                Buffers: shared hit=2
+                                ->  Seq Scan on users voter  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=17.88..17.88 rows=3 width=60) (actual time=0.009..0.009 rows=14.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on points_events pe  (cost=0.00..17.88 rows=3 width=60) (actual time=0.003..0.005 rows=14.00 loops=1)
+                                            Filter: (user_id = 1)
+                                            Rows Removed by Filter: 15
+                                            Buffers: shared hit=1
+                          ->  Index Scan using doubts_pkey on doubts d  (cost=0.15..6.83 rows=1 width=36) (actual time=0.000..0.000 rows=0.00 loops=14)
+                                Index Cond: (doubt_id = pe.doubt_id)
+                                Index Searches: 0
+                    ->  Index Scan using answers_pkey on answers a  (cost=0.15..6.83 rows=1 width=8) (actual time=0.000..0.000 rows=0.43 loops=14)
+                          Index Cond: (answer_id = pe.answer_id)
+                          Index Searches: 6
+                          Buffers: shared hit=12
+              ->  Index Scan using doubts_pkey on doubts ans_d  (cost=0.15..0.22 rows=1 width=36) (actual time=0.000..0.000 rows=0.43 loops=14)
+                    Index Cond: (doubt_id = a.doubt_id)
+                    Index Searches: 6
+                    Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=346
+Planning Time: 0.488 ms
+Execution Time: 0.069 ms

@@ -1,0 +1,38 @@
+=== W28 run 1 ===
+Delete on answer_upvotes  (cost=0.15..8.17 rows=0 width=0) (actual time=0.037..0.037 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using answer_upvotes_pkey on answer_upvotes  (cost=0.15..8.17 rows=1 width=6) (actual time=0.004..0.004 rows=1.00 loops=1)
+        Index Cond: ((answer_id = 1) AND (user_id = 3))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.129 ms
+Trigger for constraint fk_pe_upvote: time=0.155 calls=1
+Execution Time: 0.234 ms
+
+=== W28 run 2 ===
+Delete on answer_upvotes  (cost=0.15..8.17 rows=0 width=0) (actual time=0.034..0.034 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using answer_upvotes_pkey on answer_upvotes  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: ((answer_id = 1) AND (user_id = 3))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.143 ms
+Trigger for constraint fk_pe_upvote: time=0.164 calls=1
+Execution Time: 0.246 ms
+
+=== W28 run 3 ===
+Delete on answer_upvotes  (cost=0.15..8.17 rows=0 width=0) (actual time=0.032..0.032 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using answer_upvotes_pkey on answer_upvotes  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: ((answer_id = 1) AND (user_id = 3))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.160 ms
+Trigger for constraint fk_pe_upvote: time=0.168 calls=1
+Execution Time: 0.250 ms

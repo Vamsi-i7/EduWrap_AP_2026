@@ -1,0 +1,92 @@
+=== R24 run 1 ===
+Limit  (cost=55.89..56.07 rows=10 width=52) (actual time=0.033..0.035 rows=4.00 loops=1)
+  Buffers: shared hit=5
+  ->  WindowAgg  (cost=55.89..59.55 rows=210 width=52) (actual time=0.033..0.035 rows=4.00 loops=1)
+        Window: w1 AS (ORDER BY (sum(pe.points)) ROWS UNBOUNDED PRECEDING)
+        Storage: Memory  Maximum Storage: 17kB
+        Buffers: shared hit=5
+        ->  Sort  (cost=55.88..56.40 rows=210 width=44) (actual time=0.030..0.031 rows=4.00 loops=1)
+              Sort Key: (sum(pe.points)) DESC
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=5
+              ->  HashAggregate  (cost=45.68..47.78 rows=210 width=44) (actual time=0.024..0.025 rows=4.00 loops=1)
+                    Group Key: u.user_id
+                    Batches: 1  Memory Usage: 32kB
+                    Buffers: shared hit=2
+                    ->  Hash Join  (cost=23.05..44.63 rows=210 width=40) (actual time=0.013..0.019 rows=29.00 loops=1)
+                          Hash Cond: (pe.user_id = u.user_id)
+                          Buffers: shared hit=2
+                          ->  Seq Scan on points_events pe  (cost=0.00..21.02 rows=210 width=8) (actual time=0.004..0.008 rows=29.00 loops=1)
+                                Filter: (created_at >= date_trunc('week'::text, CURRENT_TIMESTAMP))
+                                Buffers: shared hit=1
+                          ->  Hash  (cost=15.80..15.80 rows=580 width=36) (actual time=0.006..0.006 rows=6.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                      Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=200
+Planning Time: 0.332 ms
+Execution Time: 0.067 ms
+
+=== R24 run 2 ===
+Limit  (cost=55.89..56.07 rows=10 width=52) (actual time=0.031..0.033 rows=4.00 loops=1)
+  Buffers: shared hit=5
+  ->  WindowAgg  (cost=55.89..59.55 rows=210 width=52) (actual time=0.031..0.033 rows=4.00 loops=1)
+        Window: w1 AS (ORDER BY (sum(pe.points)) ROWS UNBOUNDED PRECEDING)
+        Storage: Memory  Maximum Storage: 17kB
+        Buffers: shared hit=5
+        ->  Sort  (cost=55.88..56.40 rows=210 width=44) (actual time=0.029..0.029 rows=4.00 loops=1)
+              Sort Key: (sum(pe.points)) DESC
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=5
+              ->  HashAggregate  (cost=45.68..47.78 rows=210 width=44) (actual time=0.023..0.024 rows=4.00 loops=1)
+                    Group Key: u.user_id
+                    Batches: 1  Memory Usage: 32kB
+                    Buffers: shared hit=2
+                    ->  Hash Join  (cost=23.05..44.63 rows=210 width=40) (actual time=0.013..0.018 rows=29.00 loops=1)
+                          Hash Cond: (pe.user_id = u.user_id)
+                          Buffers: shared hit=2
+                          ->  Seq Scan on points_events pe  (cost=0.00..21.02 rows=210 width=8) (actual time=0.004..0.008 rows=29.00 loops=1)
+                                Filter: (created_at >= date_trunc('week'::text, CURRENT_TIMESTAMP))
+                                Buffers: shared hit=1
+                          ->  Hash  (cost=15.80..15.80 rows=580 width=36) (actual time=0.005..0.005 rows=6.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.002..0.003 rows=6.00 loops=1)
+                                      Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=200
+Planning Time: 0.299 ms
+Execution Time: 0.066 ms
+
+=== R24 run 3 ===
+Limit  (cost=55.89..56.07 rows=10 width=52) (actual time=0.031..0.033 rows=4.00 loops=1)
+  Buffers: shared hit=5
+  ->  WindowAgg  (cost=55.89..59.55 rows=210 width=52) (actual time=0.031..0.032 rows=4.00 loops=1)
+        Window: w1 AS (ORDER BY (sum(pe.points)) ROWS UNBOUNDED PRECEDING)
+        Storage: Memory  Maximum Storage: 17kB
+        Buffers: shared hit=5
+        ->  Sort  (cost=55.88..56.40 rows=210 width=44) (actual time=0.028..0.029 rows=4.00 loops=1)
+              Sort Key: (sum(pe.points)) DESC
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=5
+              ->  HashAggregate  (cost=45.68..47.78 rows=210 width=44) (actual time=0.023..0.023 rows=4.00 loops=1)
+                    Group Key: u.user_id
+                    Batches: 1  Memory Usage: 32kB
+                    Buffers: shared hit=2
+                    ->  Hash Join  (cost=23.05..44.63 rows=210 width=40) (actual time=0.012..0.017 rows=29.00 loops=1)
+                          Hash Cond: (pe.user_id = u.user_id)
+                          Buffers: shared hit=2
+                          ->  Seq Scan on points_events pe  (cost=0.00..21.02 rows=210 width=8) (actual time=0.004..0.007 rows=29.00 loops=1)
+                                Filter: (created_at >= date_trunc('week'::text, CURRENT_TIMESTAMP))
+                                Buffers: shared hit=1
+                          ->  Hash  (cost=15.80..15.80 rows=580 width=36) (actual time=0.005..0.006 rows=6.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.002..0.003 rows=6.00 loops=1)
+                                      Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=200
+Planning Time: 0.299 ms
+Execution Time: 0.065 ms

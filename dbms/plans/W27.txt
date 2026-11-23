@@ -1,0 +1,38 @@
+=== W27 run 1 ===
+Insert on answer_upvotes  (cost=0.00..0.01 rows=0 width=0) (actual time=0.025..0.026 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: answer_upvotes_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=11
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.000 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=43
+Planning Time: 0.051 ms
+Execution Time: 0.040 ms
+
+=== W27 run 2 ===
+Insert on answer_upvotes  (cost=0.00..0.01 rows=0 width=0) (actual time=0.025..0.025 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: answer_upvotes_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=11
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.001 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=43
+Planning Time: 0.046 ms
+Execution Time: 0.039 ms
+
+=== W27 run 3 ===
+Insert on answer_upvotes  (cost=0.00..0.01 rows=0 width=0) (actual time=0.023..0.024 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: answer_upvotes_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=11
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.001 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=43
+Planning Time: 0.044 ms
+Execution Time: 0.038 ms

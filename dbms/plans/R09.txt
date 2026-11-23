@@ -1,0 +1,140 @@
+=== R09 run 1 ===
+Sort  (cost=59.93..59.96 rows=10 width=93) (actual time=0.062..0.063 rows=6.00 loops=1)
+  Sort Key: ((rm.user_id = r.owner_id)) DESC, (COALESCE(sum(pe.points), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=20
+  ->  GroupAggregate  (cost=59.52..59.77 rows=10 width=93) (actual time=0.050..0.053 rows=6.00 loops=1)
+        Group Key: rm.user_id, u.email, r.owner_id
+        Buffers: shared hit=12
+        ->  Sort  (cost=59.52..59.54 rows=10 width=88) (actual time=0.045..0.047 rows=31.00 loops=1)
+              Sort Key: rm.user_id, u.email, r.owner_id
+              Sort Method: quicksort  Memory: 27kB
+              Buffers: shared hit=12
+              ->  Nested Loop  (cost=32.47..59.35 rows=10 width=88) (actual time=0.027..0.034 rows=31.00 loops=1)
+                    Buffers: shared hit=6
+                    ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=8) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Index Cond: (room_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+                    ->  Hash Right Join  (cost=32.32..51.09 rows=10 width=84) (actual time=0.024..0.029 rows=31.00 loops=1)
+                          Hash Cond: (pe.user_id = u.user_id)
+                          Buffers: shared hit=4
+                          ->  Seq Scan on points_events pe  (cost=0.00..16.30 rows=630 width=8) (actual time=0.002..0.003 rows=29.00 loops=1)
+                                Buffers: shared hit=1
+                          ->  Hash  (cost=32.21..32.21 rows=9 width=84) (actual time=0.018..0.018 rows=6.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=3
+                                ->  Hash Join  (cost=14.88..32.21 rows=9 width=84) (actual time=0.015..0.016 rows=6.00 loops=1)
+                                      Hash Cond: (u.user_id = rm.user_id)
+                                      Buffers: shared hit=3
+                                      ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=68) (actual time=0.005..0.005 rows=6.00 loops=1)
+                                            Buffers: shared hit=1
+                                      ->  Hash  (cost=14.76..14.76 rows=9 width=16) (actual time=0.007..0.008 rows=6.00 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                            Buffers: shared hit=2
+                                            ->  Bitmap Heap Scan on room_members rm  (cost=4.22..14.76 rows=9 width=16) (actual time=0.005..0.005 rows=6.00 loops=1)
+                                                  Recheck Cond: (room_id = 1)
+                                                  Heap Blocks: exact=1
+                                                  Buffers: shared hit=2
+                                                  ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..4.22 rows=9 width=0) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                                        Index Cond: (room_id = 1)
+                                                        Index Searches: 1
+                                                        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=295
+Planning Time: 0.450 ms
+Execution Time: 0.096 ms
+
+=== R09 run 2 ===
+Sort  (cost=59.93..59.96 rows=10 width=93) (actual time=0.074..0.075 rows=6.00 loops=1)
+  Sort Key: ((rm.user_id = r.owner_id)) DESC, (COALESCE(sum(pe.points), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=20
+  ->  GroupAggregate  (cost=59.52..59.77 rows=10 width=93) (actual time=0.060..0.064 rows=6.00 loops=1)
+        Group Key: rm.user_id, u.email, r.owner_id
+        Buffers: shared hit=12
+        ->  Sort  (cost=59.52..59.54 rows=10 width=88) (actual time=0.055..0.056 rows=31.00 loops=1)
+              Sort Key: rm.user_id, u.email, r.owner_id
+              Sort Method: quicksort  Memory: 27kB
+              Buffers: shared hit=12
+              ->  Nested Loop  (cost=32.47..59.35 rows=10 width=88) (actual time=0.032..0.041 rows=31.00 loops=1)
+                    Buffers: shared hit=6
+                    ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=8) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Index Cond: (room_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+                    ->  Hash Right Join  (cost=32.32..51.09 rows=10 width=84) (actual time=0.028..0.035 rows=31.00 loops=1)
+                          Hash Cond: (pe.user_id = u.user_id)
+                          Buffers: shared hit=4
+                          ->  Seq Scan on points_events pe  (cost=0.00..16.30 rows=630 width=8) (actual time=0.003..0.004 rows=29.00 loops=1)
+                                Buffers: shared hit=1
+                          ->  Hash  (cost=32.21..32.21 rows=9 width=84) (actual time=0.021..0.022 rows=6.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=3
+                                ->  Hash Join  (cost=14.88..32.21 rows=9 width=84) (actual time=0.018..0.019 rows=6.00 loops=1)
+                                      Hash Cond: (u.user_id = rm.user_id)
+                                      Buffers: shared hit=3
+                                      ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=68) (actual time=0.004..0.004 rows=6.00 loops=1)
+                                            Buffers: shared hit=1
+                                      ->  Hash  (cost=14.76..14.76 rows=9 width=16) (actual time=0.010..0.010 rows=6.00 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                            Buffers: shared hit=2
+                                            ->  Bitmap Heap Scan on room_members rm  (cost=4.22..14.76 rows=9 width=16) (actual time=0.007..0.008 rows=6.00 loops=1)
+                                                  Recheck Cond: (room_id = 1)
+                                                  Heap Blocks: exact=1
+                                                  Buffers: shared hit=2
+                                                  ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..4.22 rows=9 width=0) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                                        Index Cond: (room_id = 1)
+                                                        Index Searches: 1
+                                                        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=295
+Planning Time: 0.444 ms
+Execution Time: 0.110 ms
+
+=== R09 run 3 ===
+Sort  (cost=59.93..59.96 rows=10 width=93) (actual time=0.060..0.061 rows=6.00 loops=1)
+  Sort Key: ((rm.user_id = r.owner_id)) DESC, (COALESCE(sum(pe.points), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=20
+  ->  GroupAggregate  (cost=59.52..59.77 rows=10 width=93) (actual time=0.048..0.051 rows=6.00 loops=1)
+        Group Key: rm.user_id, u.email, r.owner_id
+        Buffers: shared hit=12
+        ->  Sort  (cost=59.52..59.54 rows=10 width=88) (actual time=0.044..0.045 rows=31.00 loops=1)
+              Sort Key: rm.user_id, u.email, r.owner_id
+              Sort Method: quicksort  Memory: 27kB
+              Buffers: shared hit=12
+              ->  Nested Loop  (cost=32.47..59.35 rows=10 width=88) (actual time=0.026..0.032 rows=31.00 loops=1)
+                    Buffers: shared hit=6
+                    ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=8) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Index Cond: (room_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+                    ->  Hash Right Join  (cost=32.32..51.09 rows=10 width=84) (actual time=0.022..0.027 rows=31.00 loops=1)
+                          Hash Cond: (pe.user_id = u.user_id)
+                          Buffers: shared hit=4
+                          ->  Seq Scan on points_events pe  (cost=0.00..16.30 rows=630 width=8) (actual time=0.002..0.003 rows=29.00 loops=1)
+                                Buffers: shared hit=1
+                          ->  Hash  (cost=32.21..32.21 rows=9 width=84) (actual time=0.017..0.017 rows=6.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=3
+                                ->  Hash Join  (cost=14.88..32.21 rows=9 width=84) (actual time=0.014..0.015 rows=6.00 loops=1)
+                                      Hash Cond: (u.user_id = rm.user_id)
+                                      Buffers: shared hit=3
+                                      ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=68) (actual time=0.004..0.004 rows=6.00 loops=1)
+                                            Buffers: shared hit=1
+                                      ->  Hash  (cost=14.76..14.76 rows=9 width=16) (actual time=0.007..0.007 rows=6.00 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                            Buffers: shared hit=2
+                                            ->  Bitmap Heap Scan on room_members rm  (cost=4.22..14.76 rows=9 width=16) (actual time=0.005..0.005 rows=6.00 loops=1)
+                                                  Recheck Cond: (room_id = 1)
+                                                  Heap Blocks: exact=1
+                                                  Buffers: shared hit=2
+                                                  ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..4.22 rows=9 width=0) (actual time=0.002..0.002 rows=6.00 loops=1)
+                                                        Index Cond: (room_id = 1)
+                                                        Index Searches: 1
+                                                        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=295
+Planning Time: 0.453 ms
+Execution Time: 0.093 ms

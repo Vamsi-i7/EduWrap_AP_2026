@@ -1,0 +1,110 @@
+=== R16 run 1 ===
+Limit  (cost=33.68..41.82 rows=4 width=104) (actual time=0.021..0.021 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Nested Loop  (cost=33.68..41.82 rows=4 width=104) (actual time=0.020..0.021 rows=0.00 loops=1)
+        Buffers: shared hit=3
+        ->  Merge Anti Join  (cost=33.53..33.60 rows=4 width=72) (actual time=0.020..0.020 rows=0.00 loops=1)
+              Merge Cond: (c.card_id = cp.card_id)
+              Buffers: shared hit=3
+              ->  Sort  (cost=19.04..19.05 rows=4 width=72) (actual time=0.010..0.010 rows=5.00 loops=1)
+                    Sort Key: c.card_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=72) (actual time=0.004..0.005 rows=5.00 loops=1)
+                          Filter: (deck_id = 1)
+                          Rows Removed by Filter: 16
+                          Buffers: shared hit=1
+              ->  Sort  (cost=14.49..14.51 rows=8 width=4) (actual time=0.007..0.007 rows=5.00 loops=1)
+                    Sort Key: cp.card_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2
+                    ->  Bitmap Heap Scan on card_progress cp  (cost=4.21..14.37 rows=8 width=4) (actual time=0.004..0.004 rows=8.00 loops=1)
+                          Recheck Cond: (user_id = 1)
+                          Heap Blocks: exact=1
+                          Buffers: shared hit=2
+                          ->  Bitmap Index Scan on card_progress_pkey  (cost=0.00..4.21 rows=8 width=0) (actual time=0.001..0.001 rows=8.00 loops=1)
+                                Index Cond: (user_id = 1)
+                                Index Searches: 1
+                                Buffers: shared hit=1
+        ->  Materialize  (cost=0.15..8.17 rows=1 width=36) (never executed)
+              ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=36) (never executed)
+                    Index Cond: (deck_id = 1)
+                    Index Searches: 0
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.280 ms
+Execution Time: 0.043 ms
+
+=== R16 run 2 ===
+Limit  (cost=33.68..41.82 rows=4 width=104) (actual time=0.023..0.024 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Nested Loop  (cost=33.68..41.82 rows=4 width=104) (actual time=0.023..0.023 rows=0.00 loops=1)
+        Buffers: shared hit=3
+        ->  Merge Anti Join  (cost=33.53..33.60 rows=4 width=72) (actual time=0.023..0.023 rows=0.00 loops=1)
+              Merge Cond: (c.card_id = cp.card_id)
+              Buffers: shared hit=3
+              ->  Sort  (cost=19.04..19.05 rows=4 width=72) (actual time=0.011..0.011 rows=5.00 loops=1)
+                    Sort Key: c.card_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=72) (actual time=0.005..0.005 rows=5.00 loops=1)
+                          Filter: (deck_id = 1)
+                          Rows Removed by Filter: 16
+                          Buffers: shared hit=1
+              ->  Sort  (cost=14.49..14.51 rows=8 width=4) (actual time=0.009..0.009 rows=5.00 loops=1)
+                    Sort Key: cp.card_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2
+                    ->  Bitmap Heap Scan on card_progress cp  (cost=4.21..14.37 rows=8 width=4) (actual time=0.005..0.006 rows=8.00 loops=1)
+                          Recheck Cond: (user_id = 1)
+                          Heap Blocks: exact=1
+                          Buffers: shared hit=2
+                          ->  Bitmap Index Scan on card_progress_pkey  (cost=0.00..4.21 rows=8 width=0) (actual time=0.002..0.002 rows=8.00 loops=1)
+                                Index Cond: (user_id = 1)
+                                Index Searches: 1
+                                Buffers: shared hit=1
+        ->  Materialize  (cost=0.15..8.17 rows=1 width=36) (never executed)
+              ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=36) (never executed)
+                    Index Cond: (deck_id = 1)
+                    Index Searches: 0
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.324 ms
+Execution Time: 0.049 ms
+
+=== R16 run 3 ===
+Limit  (cost=33.68..41.82 rows=4 width=104) (actual time=0.019..0.020 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Nested Loop  (cost=33.68..41.82 rows=4 width=104) (actual time=0.019..0.019 rows=0.00 loops=1)
+        Buffers: shared hit=3
+        ->  Merge Anti Join  (cost=33.53..33.60 rows=4 width=72) (actual time=0.019..0.019 rows=0.00 loops=1)
+              Merge Cond: (c.card_id = cp.card_id)
+              Buffers: shared hit=3
+              ->  Sort  (cost=19.04..19.05 rows=4 width=72) (actual time=0.008..0.008 rows=5.00 loops=1)
+                    Sort Key: c.card_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=72) (actual time=0.003..0.004 rows=5.00 loops=1)
+                          Filter: (deck_id = 1)
+                          Rows Removed by Filter: 16
+                          Buffers: shared hit=1
+              ->  Sort  (cost=14.49..14.51 rows=8 width=4) (actual time=0.007..0.008 rows=5.00 loops=1)
+                    Sort Key: cp.card_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2
+                    ->  Bitmap Heap Scan on card_progress cp  (cost=4.21..14.37 rows=8 width=4) (actual time=0.004..0.005 rows=8.00 loops=1)
+                          Recheck Cond: (user_id = 1)
+                          Heap Blocks: exact=1
+                          Buffers: shared hit=2
+                          ->  Bitmap Index Scan on card_progress_pkey  (cost=0.00..4.21 rows=8 width=0) (actual time=0.001..0.001 rows=8.00 loops=1)
+                                Index Cond: (user_id = 1)
+                                Index Searches: 1
+                                Buffers: shared hit=1
+        ->  Materialize  (cost=0.15..8.17 rows=1 width=36) (never executed)
+              ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=36) (never executed)
+                    Index Cond: (deck_id = 1)
+                    Index Searches: 0
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.272 ms
+Execution Time: 0.041 ms

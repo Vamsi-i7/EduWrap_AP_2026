@@ -1,0 +1,35 @@
+=== W15 run 1 ===
+Update on cards  (cost=0.15..8.17 rows=0 width=0) (actual time=0.057..0.057 rows=0.00 loops=1)
+  Buffers: shared hit=18
+  ->  Index Scan using cards_pkey on cards  (cost=0.15..8.17 rows=1 width=70) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (card_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=75
+Planning Time: 0.137 ms
+Execution Time: 0.103 ms
+
+=== W15 run 2 ===
+Update on cards  (cost=0.15..8.17 rows=0 width=0) (actual time=0.057..0.057 rows=0.00 loops=1)
+  Buffers: shared hit=18
+  ->  Index Scan using cards_pkey on cards  (cost=0.15..8.17 rows=1 width=70) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (card_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=75
+Planning Time: 0.143 ms
+Execution Time: 0.101 ms
+
+=== W15 run 3 ===
+Update on cards  (cost=0.15..8.17 rows=0 width=0) (actual time=0.056..0.056 rows=0.00 loops=1)
+  Buffers: shared hit=18
+  ->  Index Scan using cards_pkey on cards  (cost=0.15..8.17 rows=1 width=70) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (card_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=75
+Planning Time: 0.147 ms
+Execution Time: 0.103 ms

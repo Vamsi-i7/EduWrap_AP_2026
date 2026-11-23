@@ -1,0 +1,122 @@
+=== R11 run 1 ===
+GroupAggregate  (cost=51.82..51.91 rows=4 width=220) (actual time=0.038..0.039 rows=1.00 loops=1)
+  Group Key: s.name, u.user_id, r.name
+  Buffers: shared hit=15
+  ->  Sort  (cost=51.82..51.83 rows=4 width=216) (actual time=0.034..0.035 rows=5.00 loops=1)
+        Sort Key: s.name, u.user_id, r.name
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=15
+        ->  Nested Loop Left Join  (cost=0.60..51.78 rows=4 width=216) (actual time=0.018..0.020 rows=5.00 loops=1)
+              Buffers: shared hit=9
+              ->  Nested Loop Left Join  (cost=0.60..32.74 rows=1 width=212) (actual time=0.015..0.015 rows=1.00 loops=1)
+                    Buffers: shared hit=8
+                    ->  Nested Loop  (cost=0.45..24.55 rows=1 width=180) (actual time=0.011..0.012 rows=1.00 loops=1)
+                          Buffers: shared hit=6
+                          ->  Nested Loop  (cost=0.30..16.35 rows=1 width=148) (actual time=0.007..0.008 rows=1.00 loops=1)
+                                Buffers: shared hit=4
+                                ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=120) (actual time=0.003..0.004 rows=1.00 loops=1)
+                                      Index Cond: (deck_id = 1)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                                ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                      Index Cond: (subject_id = d.subject_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                          ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=36) (actual time=0.004..0.004 rows=1.00 loops=1)
+                                Index Cond: (user_id = d.owner_id)
+                                Index Searches: 1
+                                Buffers: shared hit=2
+                    ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Index Cond: (room_id = d.room_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+              ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=8) (actual time=0.003..0.004 rows=5.00 loops=1)
+                    Filter: (deck_id = 1)
+                    Rows Removed by Filter: 16
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=275
+Planning Time: 0.550 ms
+Execution Time: 0.080 ms
+
+=== R11 run 2 ===
+GroupAggregate  (cost=51.82..51.91 rows=4 width=220) (actual time=0.035..0.036 rows=1.00 loops=1)
+  Group Key: s.name, u.user_id, r.name
+  Buffers: shared hit=15
+  ->  Sort  (cost=51.82..51.83 rows=4 width=216) (actual time=0.032..0.032 rows=5.00 loops=1)
+        Sort Key: s.name, u.user_id, r.name
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=15
+        ->  Nested Loop Left Join  (cost=0.60..51.78 rows=4 width=216) (actual time=0.017..0.018 rows=5.00 loops=1)
+              Buffers: shared hit=9
+              ->  Nested Loop Left Join  (cost=0.60..32.74 rows=1 width=212) (actual time=0.013..0.014 rows=1.00 loops=1)
+                    Buffers: shared hit=8
+                    ->  Nested Loop  (cost=0.45..24.55 rows=1 width=180) (actual time=0.010..0.011 rows=1.00 loops=1)
+                          Buffers: shared hit=6
+                          ->  Nested Loop  (cost=0.30..16.35 rows=1 width=148) (actual time=0.006..0.007 rows=1.00 loops=1)
+                                Buffers: shared hit=4
+                                ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=120) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                      Index Cond: (deck_id = 1)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                                ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..8.17 rows=1 width=36) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                      Index Cond: (subject_id = d.subject_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                          ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                Index Cond: (user_id = d.owner_id)
+                                Index Searches: 1
+                                Buffers: shared hit=2
+                    ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Index Cond: (room_id = d.room_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+              ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=8) (actual time=0.003..0.004 rows=5.00 loops=1)
+                    Filter: (deck_id = 1)
+                    Rows Removed by Filter: 16
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=275
+Planning Time: 0.535 ms
+Execution Time: 0.073 ms
+
+=== R11 run 3 ===
+GroupAggregate  (cost=51.82..51.91 rows=4 width=220) (actual time=0.035..0.035 rows=1.00 loops=1)
+  Group Key: s.name, u.user_id, r.name
+  Buffers: shared hit=15
+  ->  Sort  (cost=51.82..51.83 rows=4 width=216) (actual time=0.031..0.032 rows=5.00 loops=1)
+        Sort Key: s.name, u.user_id, r.name
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=15
+        ->  Nested Loop Left Join  (cost=0.60..51.78 rows=4 width=216) (actual time=0.017..0.018 rows=5.00 loops=1)
+              Buffers: shared hit=9
+              ->  Nested Loop Left Join  (cost=0.60..32.74 rows=1 width=212) (actual time=0.013..0.014 rows=1.00 loops=1)
+                    Buffers: shared hit=8
+                    ->  Nested Loop  (cost=0.45..24.55 rows=1 width=180) (actual time=0.010..0.010 rows=1.00 loops=1)
+                          Buffers: shared hit=6
+                          ->  Nested Loop  (cost=0.30..16.35 rows=1 width=148) (actual time=0.006..0.006 rows=1.00 loops=1)
+                                Buffers: shared hit=4
+                                ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=120) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                      Index Cond: (deck_id = 1)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                                ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..8.17 rows=1 width=36) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                      Index Cond: (subject_id = d.subject_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                          ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=36) (actual time=0.004..0.004 rows=1.00 loops=1)
+                                Index Cond: (user_id = d.owner_id)
+                                Index Searches: 1
+                                Buffers: shared hit=2
+                    ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Index Cond: (room_id = d.room_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+              ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=8) (actual time=0.003..0.004 rows=5.00 loops=1)
+                    Filter: (deck_id = 1)
+                    Rows Removed by Filter: 16
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=275
+Planning Time: 0.465 ms
+Execution Time: 0.071 ms

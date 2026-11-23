@@ -1,0 +1,35 @@
+=== W02 run 1 ===
+Update on users  (cost=0.15..8.17 rows=0 width=0) (actual time=0.079..0.080 rows=0.00 loops=1)
+  Buffers: shared hit=38
+  ->  Index Scan using users_pkey on users  (cost=0.15..8.17 rows=1 width=10) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (user_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=93
+Planning Time: 0.169 ms
+Execution Time: 0.134 ms
+
+=== W02 run 2 ===
+Update on users  (cost=0.15..8.17 rows=0 width=0) (actual time=0.071..0.071 rows=0.00 loops=1)
+  Buffers: shared hit=38
+  ->  Index Scan using users_pkey on users  (cost=0.15..8.17 rows=1 width=10) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (user_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=93
+Planning Time: 0.166 ms
+Execution Time: 0.116 ms
+
+=== W02 run 3 ===
+Update on users  (cost=0.15..8.17 rows=0 width=0) (actual time=0.063..0.064 rows=0.00 loops=1)
+  Buffers: shared hit=38
+  ->  Index Scan using users_pkey on users  (cost=0.15..8.17 rows=1 width=10) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (user_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=93
+Planning Time: 0.148 ms
+Execution Time: 0.105 ms

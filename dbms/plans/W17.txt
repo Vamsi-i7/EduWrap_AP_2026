@@ -1,0 +1,38 @@
+=== W17 run 1 ===
+Insert on card_progress  (cost=0.00..0.02 rows=0 width=0) (actual time=0.065..0.065 rows=0.00 loops=1)
+  Conflict Resolution: UPDATE
+  Conflict Arbiter Indexes: card_progress_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=24
+  ->  Result  (cost=0.00..0.02 rows=1 width=24) (actual time=0.006..0.006 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=36
+Planning Time: 0.040 ms
+Execution Time: 0.113 ms
+
+=== W17 run 2 ===
+Insert on card_progress  (cost=0.00..0.02 rows=0 width=0) (actual time=0.063..0.063 rows=0.00 loops=1)
+  Conflict Resolution: UPDATE
+  Conflict Arbiter Indexes: card_progress_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=24
+  ->  Result  (cost=0.00..0.02 rows=1 width=24) (actual time=0.005..0.005 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=36
+Planning Time: 0.038 ms
+Execution Time: 0.114 ms
+
+=== W17 run 3 ===
+Insert on card_progress  (cost=0.00..0.02 rows=0 width=0) (actual time=0.078..0.078 rows=0.00 loops=1)
+  Conflict Resolution: UPDATE
+  Conflict Arbiter Indexes: card_progress_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=24
+  ->  Result  (cost=0.00..0.02 rows=1 width=24) (actual time=0.007..0.007 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=36
+Planning Time: 0.050 ms
+Execution Time: 0.134 ms

@@ -1,0 +1,98 @@
+=== R12 run 1 ===
+Sort  (cost=51.95..51.96 rows=4 width=148) (actual time=0.029..0.030 rows=5.00 loops=1)
+  Sort Key: c.card_id
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=7
+  ->  Nested Loop Left Join  (cost=19.35..51.91 rows=4 width=148) (actual time=0.019..0.023 rows=5.00 loops=1)
+        Buffers: shared hit=4
+        ->  Nested Loop  (cost=19.20..51.05 rows=4 width=116) (actual time=0.017..0.020 rows=5.00 loops=1)
+              Buffers: shared hit=4
+              ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=36) (actual time=0.004..0.004 rows=1.00 loops=1)
+                    Index Cond: (deck_id = 1)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Hash Right Join  (cost=19.05..42.84 rows=4 width=88) (actual time=0.012..0.015 rows=5.00 loops=1)
+                    Hash Cond: (a.answer_id = c.source_answer_id)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=8) (actual time=0.002..0.002 rows=2.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=19.00..19.00 rows=4 width=84) (actual time=0.006..0.006 rows=5.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=84) (actual time=0.003..0.004 rows=5.00 loops=1)
+                                Filter: (deck_id = 1)
+                                Rows Removed by Filter: 16
+                                Buffers: shared hit=1
+        ->  Index Scan using doubts_pkey on doubts ans_d  (cost=0.15..0.22 rows=1 width=36) (actual time=0.000..0.000 rows=0.00 loops=5)
+              Index Cond: (doubt_id = a.doubt_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=199
+Planning Time: 0.403 ms
+Execution Time: 0.056 ms
+
+=== R12 run 2 ===
+Sort  (cost=51.95..51.96 rows=4 width=148) (actual time=0.028..0.029 rows=5.00 loops=1)
+  Sort Key: c.card_id
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=7
+  ->  Nested Loop Left Join  (cost=19.35..51.91 rows=4 width=148) (actual time=0.019..0.022 rows=5.00 loops=1)
+        Buffers: shared hit=4
+        ->  Nested Loop  (cost=19.20..51.05 rows=4 width=116) (actual time=0.016..0.019 rows=5.00 loops=1)
+              Buffers: shared hit=4
+              ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                    Index Cond: (deck_id = 1)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Hash Right Join  (cost=19.05..42.84 rows=4 width=88) (actual time=0.012..0.015 rows=5.00 loops=1)
+                    Hash Cond: (a.answer_id = c.source_answer_id)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=8) (actual time=0.002..0.003 rows=2.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=19.00..19.00 rows=4 width=84) (actual time=0.005..0.005 rows=5.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=84) (actual time=0.003..0.003 rows=5.00 loops=1)
+                                Filter: (deck_id = 1)
+                                Rows Removed by Filter: 16
+                                Buffers: shared hit=1
+        ->  Index Scan using doubts_pkey on doubts ans_d  (cost=0.15..0.22 rows=1 width=36) (actual time=0.000..0.000 rows=0.00 loops=5)
+              Index Cond: (doubt_id = a.doubt_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=199
+Planning Time: 0.355 ms
+Execution Time: 0.054 ms
+
+=== R12 run 3 ===
+Sort  (cost=51.95..51.96 rows=4 width=148) (actual time=0.029..0.029 rows=5.00 loops=1)
+  Sort Key: c.card_id
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=7
+  ->  Nested Loop Left Join  (cost=19.35..51.91 rows=4 width=148) (actual time=0.019..0.022 rows=5.00 loops=1)
+        Buffers: shared hit=4
+        ->  Nested Loop  (cost=19.20..51.05 rows=4 width=116) (actual time=0.017..0.019 rows=5.00 loops=1)
+              Buffers: shared hit=4
+              ->  Index Scan using decks_pkey on decks d  (cost=0.15..8.17 rows=1 width=36) (actual time=0.003..0.003 rows=1.00 loops=1)
+                    Index Cond: (deck_id = 1)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Hash Right Join  (cost=19.05..42.84 rows=4 width=88) (actual time=0.013..0.015 rows=5.00 loops=1)
+                    Hash Cond: (a.answer_id = c.source_answer_id)
+                    Buffers: shared hit=2
+                    ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=8) (actual time=0.003..0.003 rows=2.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=19.00..19.00 rows=4 width=84) (actual time=0.006..0.006 rows=5.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on cards c  (cost=0.00..19.00 rows=4 width=84) (actual time=0.003..0.004 rows=5.00 loops=1)
+                                Filter: (deck_id = 1)
+                                Rows Removed by Filter: 16
+                                Buffers: shared hit=1
+        ->  Index Scan using doubts_pkey on doubts ans_d  (cost=0.15..0.22 rows=1 width=36) (actual time=0.000..0.000 rows=0.00 loops=5)
+              Index Cond: (doubt_id = a.doubt_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=199
+Planning Time: 0.380 ms
+Execution Time: 0.055 ms

@@ -1,0 +1,44 @@
+=== W09 run 1 ===
+Delete on rooms  (cost=0.15..8.17 rows=0 width=0) (actual time=0.033..0.034 rows=0.00 loops=1)
+  Buffers: shared hit=11
+  ->  Index Scan using rooms_pkey on rooms  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.005 rows=1.00 loops=1)
+        Index Cond: (room_id = 4)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.154 ms
+Trigger for constraint room_members_room_id_fkey: time=0.101 calls=1
+Trigger for constraint decks_room_id_fkey: time=0.079 calls=1
+Trigger for constraint doubts_room_id_fkey: time=0.066 calls=1
+Execution Time: 0.321 ms
+
+=== W09 run 2 ===
+Delete on rooms  (cost=0.15..8.17 rows=0 width=0) (actual time=0.035..0.035 rows=0.00 loops=1)
+  Buffers: shared hit=11
+  ->  Index Scan using rooms_pkey on rooms  (cost=0.15..8.17 rows=1 width=6) (actual time=0.007..0.007 rows=1.00 loops=1)
+        Index Cond: (room_id = 4)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.154 ms
+Trigger for constraint room_members_room_id_fkey: time=0.100 calls=1
+Trigger for constraint decks_room_id_fkey: time=0.078 calls=1
+Trigger for constraint doubts_room_id_fkey: time=0.069 calls=1
+Execution Time: 0.325 ms
+
+=== W09 run 3 ===
+Delete on rooms  (cost=0.15..8.17 rows=0 width=0) (actual time=0.033..0.033 rows=0.00 loops=1)
+  Buffers: shared hit=11
+  ->  Index Scan using rooms_pkey on rooms  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (room_id = 4)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.148 ms
+Trigger for constraint room_members_room_id_fkey: time=0.093 calls=1
+Trigger for constraint decks_room_id_fkey: time=0.075 calls=1
+Trigger for constraint doubts_room_id_fkey: time=0.064 calls=1
+Execution Time: 0.306 ms

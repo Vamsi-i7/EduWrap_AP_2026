@@ -1,0 +1,41 @@
+=== W20 run 1 ===
+Update on doubts  (cost=0.15..8.17 rows=0 width=0) (actual time=0.004..0.004 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using doubts_pkey on doubts  (cost=0.15..8.17 rows=1 width=70) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Filter: (author_id = 1)
+        Rows Removed by Filter: 1
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=82
+Planning Time: 0.151 ms
+Execution Time: 0.054 ms
+
+=== W20 run 2 ===
+Update on doubts  (cost=0.15..8.17 rows=0 width=0) (actual time=0.003..0.003 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using doubts_pkey on doubts  (cost=0.15..8.17 rows=1 width=70) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Filter: (author_id = 1)
+        Rows Removed by Filter: 1
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=82
+Planning Time: 0.167 ms
+Execution Time: 0.054 ms
+
+=== W20 run 3 ===
+Update on doubts  (cost=0.15..8.17 rows=0 width=0) (actual time=0.003..0.003 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using doubts_pkey on doubts  (cost=0.15..8.17 rows=1 width=70) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Filter: (author_id = 1)
+        Rows Removed by Filter: 1
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=82
+Planning Time: 0.141 ms
+Execution Time: 0.046 ms

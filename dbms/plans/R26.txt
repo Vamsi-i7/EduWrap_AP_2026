@@ -1,0 +1,77 @@
+=== R26 run 1 ===
+Sort  (cost=76.98..79.10 rows=850 width=77) (actual time=0.028..0.029 rows=4.00 loops=1)
+  Sort Key: ((ub.user_id IS NOT NULL)) DESC, b.badge_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=11
+  ->  Hash Left Join  (cost=14.88..35.62 rows=850 width=77) (actual time=0.016..0.017 rows=4.00 loops=1)
+        Hash Cond: (b.badge_id = ub.badge_id)
+        Buffers: shared hit=3
+        ->  Seq Scan on badges b  (cost=0.00..18.50 rows=850 width=68) (actual time=0.002..0.002 rows=4.00 loops=1)
+              Buffers: shared hit=1
+        ->  Hash  (cost=14.76..14.76 rows=9 width=16) (actual time=0.010..0.010 rows=3.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=2
+              ->  Bitmap Heap Scan on user_badges ub  (cost=4.22..14.76 rows=9 width=16) (actual time=0.007..0.007 rows=3.00 loops=1)
+                    Recheck Cond: (user_id = 1)
+                    Heap Blocks: exact=1
+                    Buffers: shared hit=2
+                    ->  Bitmap Index Scan on user_badges_pkey  (cost=0.00..4.22 rows=9 width=0) (actual time=0.003..0.003 rows=3.00 loops=1)
+                          Index Cond: (user_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=143
+Planning Time: 0.276 ms
+Execution Time: 0.050 ms
+
+=== R26 run 2 ===
+Sort  (cost=76.98..79.10 rows=850 width=77) (actual time=0.028..0.029 rows=4.00 loops=1)
+  Sort Key: ((ub.user_id IS NOT NULL)) DESC, b.badge_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=11
+  ->  Hash Left Join  (cost=14.88..35.62 rows=850 width=77) (actual time=0.017..0.018 rows=4.00 loops=1)
+        Hash Cond: (b.badge_id = ub.badge_id)
+        Buffers: shared hit=3
+        ->  Seq Scan on badges b  (cost=0.00..18.50 rows=850 width=68) (actual time=0.003..0.003 rows=4.00 loops=1)
+              Buffers: shared hit=1
+        ->  Hash  (cost=14.76..14.76 rows=9 width=16) (actual time=0.010..0.010 rows=3.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=2
+              ->  Bitmap Heap Scan on user_badges ub  (cost=4.22..14.76 rows=9 width=16) (actual time=0.007..0.007 rows=3.00 loops=1)
+                    Recheck Cond: (user_id = 1)
+                    Heap Blocks: exact=1
+                    Buffers: shared hit=2
+                    ->  Bitmap Index Scan on user_badges_pkey  (cost=0.00..4.22 rows=9 width=0) (actual time=0.002..0.002 rows=3.00 loops=1)
+                          Index Cond: (user_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=143
+Planning Time: 0.259 ms
+Execution Time: 0.050 ms
+
+=== R26 run 3 ===
+Sort  (cost=76.98..79.10 rows=850 width=77) (actual time=0.033..0.033 rows=4.00 loops=1)
+  Sort Key: ((ub.user_id IS NOT NULL)) DESC, b.badge_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=11
+  ->  Hash Left Join  (cost=14.88..35.62 rows=850 width=77) (actual time=0.022..0.023 rows=4.00 loops=1)
+        Hash Cond: (b.badge_id = ub.badge_id)
+        Buffers: shared hit=3
+        ->  Seq Scan on badges b  (cost=0.00..18.50 rows=850 width=68) (actual time=0.002..0.002 rows=4.00 loops=1)
+              Buffers: shared hit=1
+        ->  Hash  (cost=14.76..14.76 rows=9 width=16) (actual time=0.016..0.016 rows=3.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=2
+              ->  Bitmap Heap Scan on user_badges ub  (cost=4.22..14.76 rows=9 width=16) (actual time=0.013..0.013 rows=3.00 loops=1)
+                    Recheck Cond: (user_id = 1)
+                    Heap Blocks: exact=1
+                    Buffers: shared hit=2
+                    ->  Bitmap Index Scan on user_badges_pkey  (cost=0.00..4.22 rows=9 width=0) (actual time=0.009..0.009 rows=3.00 loops=1)
+                          Index Cond: (user_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=143
+Planning Time: 0.238 ms
+Execution Time: 0.054 ms

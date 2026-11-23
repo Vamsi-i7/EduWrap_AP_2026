@@ -1,0 +1,47 @@
+=== W26 run 1 ===
+Delete on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.034..0.034 rows=0.00 loops=1)
+  Buffers: shared hit=12
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.007 rows=1.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.157 ms
+Trigger for constraint fk_cards_source_answer on answers: time=0.102 calls=1
+Trigger for constraint answer_upvotes_answer_id_fkey on answers: time=0.079 calls=1
+Trigger for constraint points_events_answer_id_fkey on answers: time=0.105 calls=1
+Trigger for constraint fk_pe_upvote on answer_upvotes: time=0.038 calls=4
+Execution Time: 0.401 ms
+
+=== W26 run 2 ===
+Delete on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.035..0.036 rows=0.00 loops=1)
+  Buffers: shared hit=11
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.176 ms
+Trigger for constraint fk_cards_source_answer on answers: time=0.109 calls=1
+Trigger for constraint answer_upvotes_answer_id_fkey on answers: time=0.084 calls=1
+Trigger for constraint points_events_answer_id_fkey on answers: time=0.107 calls=1
+Trigger for constraint fk_pe_upvote on answer_upvotes: time=0.040 calls=4
+Execution Time: 0.418 ms
+
+=== W26 run 3 ===
+Delete on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.041..0.041 rows=0.00 loops=1)
+  Buffers: shared hit=11
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.163 ms
+Trigger for constraint fk_cards_source_answer on answers: time=0.108 calls=1
+Trigger for constraint answer_upvotes_answer_id_fkey on answers: time=0.083 calls=1
+Trigger for constraint points_events_answer_id_fkey on answers: time=0.107 calls=1
+Trigger for constraint fk_pe_upvote on answer_upvotes: time=0.040 calls=4
+Execution Time: 0.423 ms

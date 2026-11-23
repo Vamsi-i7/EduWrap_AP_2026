@@ -1,0 +1,59 @@
+=== R07 run 1 ===
+Nested Loop  (cost=0.45..24.54 rows=1 width=196) (actual time=0.004..0.005 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Nested Loop  (cost=0.30..16.35 rows=1 width=168) (actual time=0.004..0.005 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Index Scan using rooms_invite_code_key on rooms r  (cost=0.15..8.17 rows=1 width=140) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (invite_code = 'JOIN1234'::text)
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..8.17 rows=1 width=36) (never executed)
+              Index Cond: (subject_id = r.subject_id)
+              Index Searches: 0
+  ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=36) (never executed)
+        Index Cond: (user_id = r.owner_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.394 ms
+Execution Time: 0.026 ms
+
+=== R07 run 2 ===
+Nested Loop  (cost=0.45..24.54 rows=1 width=196) (actual time=0.005..0.005 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Nested Loop  (cost=0.30..16.35 rows=1 width=168) (actual time=0.004..0.005 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Index Scan using rooms_invite_code_key on rooms r  (cost=0.15..8.17 rows=1 width=140) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (invite_code = 'JOIN1234'::text)
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..8.17 rows=1 width=36) (never executed)
+              Index Cond: (subject_id = r.subject_id)
+              Index Searches: 0
+  ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=36) (never executed)
+        Index Cond: (user_id = r.owner_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.403 ms
+Execution Time: 0.027 ms
+
+=== R07 run 3 ===
+Nested Loop  (cost=0.45..24.54 rows=1 width=196) (actual time=0.005..0.005 rows=0.00 loops=1)
+  Buffers: shared hit=1
+  ->  Nested Loop  (cost=0.30..16.35 rows=1 width=168) (actual time=0.005..0.005 rows=0.00 loops=1)
+        Buffers: shared hit=1
+        ->  Index Scan using rooms_invite_code_key on rooms r  (cost=0.15..8.17 rows=1 width=140) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (invite_code = 'JOIN1234'::text)
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..8.17 rows=1 width=36) (never executed)
+              Index Cond: (subject_id = r.subject_id)
+              Index Searches: 0
+  ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=36) (never executed)
+        Index Cond: (user_id = r.owner_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.398 ms
+Execution Time: 0.027 ms

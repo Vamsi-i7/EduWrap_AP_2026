@@ -1,0 +1,35 @@
+=== W19 run 1 ===
+Insert on doubts  (cost=0.00..0.01 rows=1 width=84) (actual time=0.084..0.085 rows=1.00 loops=1)
+  Buffers: shared hit=50
+  ->  Result  (cost=0.00..0.01 rows=1 width=84) (actual time=0.017..0.017 rows=1.00 loops=1)
+        Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.033 ms
+Trigger for constraint doubts_room_id_fkey: time=0.216 calls=1
+Trigger for constraint doubts_author_id_fkey: time=0.099 calls=1
+Execution Time: 0.416 ms
+
+=== W19 run 2 ===
+Insert on doubts  (cost=0.00..0.01 rows=1 width=84) (actual time=0.091..0.092 rows=1.00 loops=1)
+  Buffers: shared hit=50
+  ->  Result  (cost=0.00..0.01 rows=1 width=84) (actual time=0.018..0.018 rows=1.00 loops=1)
+        Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.035 ms
+Trigger for constraint doubts_room_id_fkey: time=0.246 calls=1
+Trigger for constraint doubts_author_id_fkey: time=0.105 calls=1
+Execution Time: 0.462 ms
+
+=== W19 run 3 ===
+Insert on doubts  (cost=0.00..0.01 rows=1 width=84) (actual time=0.107..0.107 rows=1.00 loops=1)
+  Buffers: shared hit=50
+  ->  Result  (cost=0.00..0.01 rows=1 width=84) (actual time=0.023..0.023 rows=1.00 loops=1)
+        Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.036 ms
+Trigger for constraint doubts_room_id_fkey: time=0.241 calls=1
+Trigger for constraint doubts_author_id_fkey: time=0.115 calls=1
+Execution Time: 0.482 ms

@@ -1,0 +1,35 @@
+=== W07 run 1 ===
+Delete on room_members  (cost=0.15..8.17 rows=0 width=0) (actual time=0.014..0.014 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Scan using room_members_pkey on room_members  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.005 rows=1.00 loops=1)
+        Index Cond: ((room_id = 1) AND (user_id = 2))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.136 ms
+Execution Time: 0.056 ms
+
+=== W07 run 2 ===
+Delete on room_members  (cost=0.15..8.17 rows=0 width=0) (actual time=0.015..0.015 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Scan using room_members_pkey on room_members  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: ((room_id = 1) AND (user_id = 2))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.133 ms
+Execution Time: 0.058 ms
+
+=== W07 run 3 ===
+Delete on room_members  (cost=0.15..8.17 rows=0 width=0) (actual time=0.015..0.015 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Scan using room_members_pkey on room_members  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: ((room_id = 1) AND (user_id = 2))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=72
+Planning Time: 0.131 ms
+Execution Time: 0.056 ms

@@ -1,0 +1,35 @@
+=== W22 run 1 ===
+Insert on answers  (cost=0.00..0.01 rows=1 width=53) (actual time=0.087..0.087 rows=1.00 loops=1)
+  Buffers: shared hit=57
+  ->  Result  (cost=0.00..0.01 rows=1 width=53) (actual time=0.016..0.016 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=13
+Planning Time: 0.033 ms
+Trigger for constraint answers_doubt_id_fkey: time=0.178 calls=1
+Trigger for constraint answers_author_id_fkey: time=0.107 calls=1
+Execution Time: 0.389 ms
+
+=== W22 run 2 ===
+Insert on answers  (cost=0.00..0.01 rows=1 width=53) (actual time=0.082..0.082 rows=1.00 loops=1)
+  Buffers: shared hit=57
+  ->  Result  (cost=0.00..0.01 rows=1 width=53) (actual time=0.015..0.015 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=13
+Planning Time: 0.032 ms
+Trigger for constraint answers_doubt_id_fkey: time=0.174 calls=1
+Trigger for constraint answers_author_id_fkey: time=0.102 calls=1
+Execution Time: 0.376 ms
+
+=== W22 run 3 ===
+Insert on answers  (cost=0.00..0.01 rows=1 width=53) (actual time=0.079..0.079 rows=1.00 loops=1)
+  Buffers: shared hit=57
+  ->  Result  (cost=0.00..0.01 rows=1 width=53) (actual time=0.015..0.015 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=13
+Planning Time: 0.032 ms
+Trigger for constraint answers_doubt_id_fkey: time=0.163 calls=1
+Trigger for constraint answers_author_id_fkey: time=0.100 calls=1
+Execution Time: 0.358 ms

@@ -1,0 +1,53 @@
+=== W21 run 1 ===
+Delete on doubts  (cost=0.15..8.17 rows=0 width=0) (actual time=0.032..0.032 rows=0.00 loops=1)
+  Buffers: shared hit=9
+  ->  Index Scan using doubts_pkey on doubts  (cost=0.15..8.17 rows=1 width=6) (actual time=0.004..0.004 rows=1.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=75
+Planning Time: 0.127 ms
+Trigger for constraint answers_doubt_id_fkey on doubts: time=0.146 calls=1
+Trigger for constraint points_events_doubt_id_fkey on doubts: time=0.127 calls=1
+Trigger for constraint fk_cards_source_answer on answers: time=0.083 calls=1
+Trigger for constraint answer_upvotes_answer_id_fkey on answers: time=0.081 calls=1
+Trigger for constraint points_events_answer_id_fkey on answers: time=0.014 calls=1
+Trigger for constraint fk_pe_upvote on answer_upvotes: time=0.038 calls=4
+Execution Time: 0.563 ms
+
+=== W21 run 2 ===
+Delete on doubts  (cost=0.15..8.17 rows=0 width=0) (actual time=0.031..0.031 rows=0.00 loops=1)
+  Buffers: shared hit=9
+  ->  Index Scan using doubts_pkey on doubts  (cost=0.15..8.17 rows=1 width=6) (actual time=0.004..0.005 rows=1.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=75
+Planning Time: 0.124 ms
+Trigger for constraint answers_doubt_id_fkey on doubts: time=0.125 calls=1
+Trigger for constraint points_events_doubt_id_fkey on doubts: time=0.111 calls=1
+Trigger for constraint fk_cards_source_answer on answers: time=0.072 calls=1
+Trigger for constraint answer_upvotes_answer_id_fkey on answers: time=0.071 calls=1
+Trigger for constraint points_events_answer_id_fkey on answers: time=0.014 calls=1
+Trigger for constraint fk_pe_upvote on answer_upvotes: time=0.038 calls=4
+Execution Time: 0.504 ms
+
+=== W21 run 3 ===
+Delete on doubts  (cost=0.15..8.17 rows=0 width=0) (actual time=0.031..0.031 rows=0.00 loops=1)
+  Buffers: shared hit=9
+  ->  Index Scan using doubts_pkey on doubts  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.005 rows=1.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=75
+Planning Time: 0.127 ms
+Trigger for constraint answers_doubt_id_fkey on doubts: time=0.123 calls=1
+Trigger for constraint points_events_doubt_id_fkey on doubts: time=0.111 calls=1
+Trigger for constraint fk_cards_source_answer on answers: time=0.073 calls=1
+Trigger for constraint answer_upvotes_answer_id_fkey on answers: time=0.071 calls=1
+Trigger for constraint points_events_answer_id_fkey on answers: time=0.014 calls=1
+Trigger for constraint fk_pe_upvote on answer_upvotes: time=0.038 calls=4
+Execution Time: 0.503 ms

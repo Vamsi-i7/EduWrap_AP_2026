@@ -1,0 +1,41 @@
+=== W34 run 1 ===
+Insert on points_events  (cost=0.00..0.02 rows=0 width=0) (actual time=0.080..0.080 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: uq_pe_daily_goal
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=34
+  ->  Result  (cost=0.00..0.02 rows=1 width=100) (actual time=0.020..0.021 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=50
+Planning Time: 0.053 ms
+Execution Time: 0.096 ms
+
+=== W34 run 2 ===
+Insert on points_events  (cost=0.00..0.02 rows=0 width=0) (actual time=0.078..0.078 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: uq_pe_daily_goal
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=34
+  ->  Result  (cost=0.00..0.02 rows=1 width=100) (actual time=0.020..0.020 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=50
+Planning Time: 0.051 ms
+Execution Time: 0.094 ms
+
+=== W34 run 3 ===
+Insert on points_events  (cost=0.00..0.02 rows=0 width=0) (actual time=0.075..0.076 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: uq_pe_daily_goal
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=34
+  ->  Result  (cost=0.00..0.02 rows=1 width=100) (actual time=0.019..0.019 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=50
+Planning Time: 0.051 ms
+Execution Time: 0.092 ms

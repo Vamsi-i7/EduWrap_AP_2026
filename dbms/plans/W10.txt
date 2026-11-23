@@ -1,0 +1,38 @@
+=== W10 run 1 ===
+Insert on decks  (cost=0.00..0.01 rows=1 width=120) (actual time=0.103..0.103 rows=1.00 loops=1)
+  Buffers: shared hit=58
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.017..0.017 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.033 ms
+Trigger for constraint decks_subject_id_fkey: time=0.206 calls=1
+Trigger for constraint decks_owner_id_fkey: time=0.100 calls=1
+Trigger for constraint decks_room_id_fkey: time=0.097 calls=1
+Execution Time: 0.523 ms
+
+=== W10 run 2 ===
+Insert on decks  (cost=0.00..0.01 rows=1 width=120) (actual time=0.102..0.102 rows=1.00 loops=1)
+  Buffers: shared hit=58
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.017..0.017 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.033 ms
+Trigger for constraint decks_subject_id_fkey: time=0.200 calls=1
+Trigger for constraint decks_owner_id_fkey: time=0.097 calls=1
+Trigger for constraint decks_room_id_fkey: time=0.092 calls=1
+Execution Time: 0.508 ms
+
+=== W10 run 3 ===
+Insert on decks  (cost=0.00..0.01 rows=1 width=120) (actual time=0.108..0.108 rows=1.00 loops=1)
+  Buffers: shared hit=58
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.017..0.017 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.046 ms
+Trigger for constraint decks_subject_id_fkey: time=0.209 calls=1
+Trigger for constraint decks_owner_id_fkey: time=0.103 calls=1
+Trigger for constraint decks_room_id_fkey: time=0.094 calls=1
+Execution Time: 0.532 ms

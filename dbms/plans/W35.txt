@@ -1,0 +1,38 @@
+=== W35 run 1 ===
+Insert on user_badges  (cost=0.00..0.01 rows=0 width=0) (actual time=0.026..0.026 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: user_badges_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=11
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.000 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=43
+Planning Time: 0.047 ms
+Execution Time: 0.045 ms
+
+=== W35 run 2 ===
+Insert on user_badges  (cost=0.00..0.01 rows=0 width=0) (actual time=0.025..0.025 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: user_badges_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=11
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.000 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=43
+Planning Time: 0.048 ms
+Execution Time: 0.040 ms
+
+=== W35 run 3 ===
+Insert on user_badges  (cost=0.00..0.01 rows=0 width=0) (actual time=0.028..0.028 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: user_badges_pkey
+  Tuples Inserted: 0
+  Conflicting Tuples: 1
+  Buffers: shared hit=11
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.000 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=43
+Planning Time: 0.049 ms
+Execution Time: 0.044 ms

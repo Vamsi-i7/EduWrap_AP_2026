@@ -1,0 +1,38 @@
+=== W24 run 1 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.048..0.049 rows=0.00 loops=1)
+  Buffers: shared hit=22
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=7) (actual time=0.004..0.004 rows=1.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Filter: (doubt_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.165 ms
+Execution Time: 0.093 ms
+
+=== W24 run 2 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.051..0.051 rows=0.00 loops=1)
+  Buffers: shared hit=22
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=7) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Filter: (doubt_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.175 ms
+Execution Time: 0.095 ms
+
+=== W24 run 3 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.051..0.051 rows=0.00 loops=1)
+  Buffers: shared hit=22
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=7) (actual time=0.005..0.005 rows=1.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Filter: (doubt_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.174 ms
+Execution Time: 0.094 ms

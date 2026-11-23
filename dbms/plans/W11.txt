@@ -1,0 +1,35 @@
+=== W11 run 1 ===
+Update on decks  (cost=0.15..8.17 rows=0 width=0) (actual time=0.073..0.073 rows=0.00 loops=1)
+  Buffers: shared hit=32
+  ->  Index Scan using decks_pkey on decks  (cost=0.15..8.17 rows=1 width=106) (actual time=0.005..0.005 rows=1.00 loops=1)
+        Index Cond: (deck_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=76
+Planning Time: 0.129 ms
+Execution Time: 0.118 ms
+
+=== W11 run 2 ===
+Update on decks  (cost=0.15..8.17 rows=0 width=0) (actual time=0.071..0.071 rows=0.00 loops=1)
+  Buffers: shared hit=32
+  ->  Index Scan using decks_pkey on decks  (cost=0.15..8.17 rows=1 width=106) (actual time=0.006..0.007 rows=1.00 loops=1)
+        Index Cond: (deck_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=76
+Planning Time: 0.126 ms
+Execution Time: 0.112 ms
+
+=== W11 run 3 ===
+Update on decks  (cost=0.15..8.17 rows=0 width=0) (actual time=0.076..0.077 rows=0.00 loops=1)
+  Buffers: shared hit=32
+  ->  Index Scan using decks_pkey on decks  (cost=0.15..8.17 rows=1 width=106) (actual time=0.007..0.007 rows=1.00 loops=1)
+        Index Cond: (deck_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=76
+Planning Time: 0.139 ms
+Execution Time: 0.122 ms

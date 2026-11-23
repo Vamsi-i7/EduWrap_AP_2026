@@ -1,0 +1,29 @@
+=== R01 run 1 ===
+Index Scan using users_email_key on users u  (cost=0.15..8.17 rows=1 width=112) (actual time=0.004..0.005 rows=0.00 loops=1)
+  Index Cond: (email = 'asha@mail.com'::text)
+  Index Searches: 1
+  Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=93
+Planning Time: 0.223 ms
+Execution Time: 0.021 ms
+
+=== R01 run 2 ===
+Index Scan using users_email_key on users u  (cost=0.15..8.17 rows=1 width=112) (actual time=0.004..0.004 rows=0.00 loops=1)
+  Index Cond: (email = 'asha@mail.com'::text)
+  Index Searches: 1
+  Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=93
+Planning Time: 0.198 ms
+Execution Time: 0.021 ms
+
+=== R01 run 3 ===
+Index Scan using users_email_key on users u  (cost=0.15..8.17 rows=1 width=112) (actual time=0.004..0.004 rows=0.00 loops=1)
+  Index Cond: (email = 'asha@mail.com'::text)
+  Index Searches: 1
+  Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=93
+Planning Time: 0.204 ms
+Execution Time: 0.022 ms

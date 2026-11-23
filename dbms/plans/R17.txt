@@ -1,0 +1,107 @@
+=== R17 run 1 ===
+Sort  (cost=60.09..60.10 rows=6 width=121) (actual time=0.037..0.038 rows=2.00 loops=1)
+  Sort Key: d.created_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=9
+  ->  GroupAggregate  (cost=59.87..60.01 rows=6 width=121) (actual time=0.033..0.034 rows=2.00 loops=1)
+        Group Key: d.doubt_id, u.user_id
+        Buffers: shared hit=6
+        ->  Sort  (cost=59.87..59.89 rows=6 width=117) (actual time=0.028..0.029 rows=2.00 loops=1)
+              Sort Key: d.doubt_id, u.user_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=6
+              ->  Hash Join  (cost=41.76..59.80 rows=6 width=117) (actual time=0.022..0.023 rows=2.00 loops=1)
+                    Hash Cond: (u.user_id = d.author_id)
+                    Buffers: shared hit=3
+                    ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.004..0.004 rows=6.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=41.69..41.69 rows=6 width=85) (actual time=0.015..0.015 rows=2.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2
+                          ->  Hash Right Join  (cost=19.05..41.69 rows=6 width=85) (actual time=0.011..0.013 rows=2.00 loops=1)
+                                Hash Cond: (a.doubt_id = d.doubt_id)
+                                Buffers: shared hit=2
+                                ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=9) (actual time=0.003..0.003 rows=2.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=19.00..19.00 rows=4 width=80) (actual time=0.005..0.005 rows=2.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=80) (actual time=0.003..0.003 rows=2.00 loops=1)
+                                            Filter: (room_id = 1)
+                                            Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=202
+Planning Time: 0.331 ms
+Execution Time: 0.071 ms
+
+=== R17 run 2 ===
+Sort  (cost=60.09..60.10 rows=6 width=121) (actual time=0.034..0.034 rows=2.00 loops=1)
+  Sort Key: d.created_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=9
+  ->  GroupAggregate  (cost=59.87..60.01 rows=6 width=121) (actual time=0.029..0.030 rows=2.00 loops=1)
+        Group Key: d.doubt_id, u.user_id
+        Buffers: shared hit=6
+        ->  Sort  (cost=59.87..59.89 rows=6 width=117) (actual time=0.026..0.026 rows=2.00 loops=1)
+              Sort Key: d.doubt_id, u.user_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=6
+              ->  Hash Join  (cost=41.76..59.80 rows=6 width=117) (actual time=0.020..0.021 rows=2.00 loops=1)
+                    Hash Cond: (u.user_id = d.author_id)
+                    Buffers: shared hit=3
+                    ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.004 rows=6.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=41.69..41.69 rows=6 width=85) (actual time=0.013..0.014 rows=2.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2
+                          ->  Hash Right Join  (cost=19.05..41.69 rows=6 width=85) (actual time=0.010..0.012 rows=2.00 loops=1)
+                                Hash Cond: (a.doubt_id = d.doubt_id)
+                                Buffers: shared hit=2
+                                ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=9) (actual time=0.003..0.003 rows=2.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=19.00..19.00 rows=4 width=80) (actual time=0.005..0.005 rows=2.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=80) (actual time=0.003..0.003 rows=2.00 loops=1)
+                                            Filter: (room_id = 1)
+                                            Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=202
+Planning Time: 0.323 ms
+Execution Time: 0.067 ms
+
+=== R17 run 3 ===
+Sort  (cost=60.09..60.10 rows=6 width=121) (actual time=0.035..0.036 rows=2.00 loops=1)
+  Sort Key: d.created_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=9
+  ->  GroupAggregate  (cost=59.87..60.01 rows=6 width=121) (actual time=0.030..0.031 rows=2.00 loops=1)
+        Group Key: d.doubt_id, u.user_id
+        Buffers: shared hit=6
+        ->  Sort  (cost=59.87..59.89 rows=6 width=117) (actual time=0.027..0.027 rows=2.00 loops=1)
+              Sort Key: d.doubt_id, u.user_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=6
+              ->  Hash Join  (cost=41.76..59.80 rows=6 width=117) (actual time=0.021..0.022 rows=2.00 loops=1)
+                    Hash Cond: (u.user_id = d.author_id)
+                    Buffers: shared hit=3
+                    ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.004..0.004 rows=6.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=41.69..41.69 rows=6 width=85) (actual time=0.014..0.014 rows=2.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2
+                          ->  Hash Right Join  (cost=19.05..41.69 rows=6 width=85) (actual time=0.010..0.013 rows=2.00 loops=1)
+                                Hash Cond: (a.doubt_id = d.doubt_id)
+                                Buffers: shared hit=2
+                                ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=9) (actual time=0.002..0.002 rows=2.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=19.00..19.00 rows=4 width=80) (actual time=0.005..0.005 rows=2.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=80) (actual time=0.003..0.003 rows=2.00 loops=1)
+                                            Filter: (room_id = 1)
+                                            Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=202
+Planning Time: 0.333 ms
+Execution Time: 0.069 ms

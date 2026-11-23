@@ -1,0 +1,197 @@
+=== R27 run 1 ===
+GroupAggregate  (cost=436.34..522.75 rows=1 width=80) (actual time=0.159..0.160 rows=1.00 loops=1)
+  Buffers: shared hit=15
+  ->  Sort  (cost=436.34..447.14 rows=4320 width=64) (actual time=0.116..0.124 rows=448.00 loops=1)
+        Sort Key: (CASE WHEN (cp.due_date <= CURRENT_DATE) THEN cp.card_id ELSE NULL::integer END)
+        Sort Method: quicksort  Memory: 56kB
+        Buffers: shared hit=15
+        ->  Nested Loop Left Join  (cost=26.39..175.48 rows=4320 width=64) (actual time=0.037..0.083 rows=448.00 loops=1)
+              Buffers: shared hit=12
+              ->  Nested Loop Left Join  (cost=4.36..88.89 rows=480 width=60) (actual time=0.023..0.035 rows=112.00 loops=1)
+                    Buffers: shared hit=7
+                    ->  Nested Loop Left Join  (cost=0.15..68.49 rows=60 width=52) (actual time=0.016..0.021 rows=14.00 loops=1)
+                          Buffers: shared hit=5
+                          ->  Nested Loop Left Join  (cost=0.15..45.23 rows=12 width=48) (actual time=0.013..0.016 rows=14.00 loops=1)
+                                Buffers: shared hit=4
+                                ->  Nested Loop Left Join  (cost=0.15..26.07 rows=3 width=44) (actual time=0.008..0.010 rows=14.00 loops=1)
+                                      Buffers: shared hit=3
+                                      ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=40) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                            Index Cond: (user_id = 1)
+                                            Index Searches: 1
+                                            Buffers: shared hit=2
+                                      ->  Seq Scan on points_events pe  (cost=0.00..17.88 rows=3 width=8) (actual time=0.005..0.006 rows=14.00 loops=1)
+                                            Filter: (user_id = 1)
+                                            Rows Removed by Filter: 15
+                                            Buffers: shared hit=1
+                                ->  Materialize  (cost=0.00..19.02 rows=4 width=8) (actual time=0.000..0.000 rows=0.00 loops=14)
+                                      Storage: Memory  Maximum Storage: 17kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=8) (actual time=0.003..0.003 rows=0.00 loops=1)
+                                            Filter: (author_id = 1)
+                                            Rows Removed by Filter: 2
+                                            Buffers: shared hit=1
+                          ->  Materialize  (cost=0.00..22.52 rows=5 width=8) (actual time=0.000..0.000 rows=1.00 loops=14)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on answers a  (cost=0.00..22.50 rows=5 width=8) (actual time=0.001..0.002 rows=1.00 loops=1)
+                                      Filter: (author_id = 1)
+                                      Rows Removed by Filter: 1
+                                      Buffers: shared hit=1
+                    ->  Materialize  (cost=4.21..14.41 rows=8 width=12) (actual time=0.000..0.001 rows=8.00 loops=14)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=2
+                          ->  Bitmap Heap Scan on card_progress cp  (cost=4.21..14.37 rows=8 width=12) (actual time=0.005..0.005 rows=8.00 loops=1)
+                                Recheck Cond: (user_id = 1)
+                                Heap Blocks: exact=1
+                                Buffers: shared hit=2
+                                ->  Bitmap Index Scan on card_progress_pkey  (cost=0.00..4.21 rows=8 width=0) (actual time=0.001..0.001 rows=8.00 loops=1)
+                                      Index Cond: (user_id = 1)
+                                      Index Searches: 1
+                                      Buffers: shared hit=1
+              ->  Materialize  (cost=22.03..32.62 rows=9 width=8) (actual time=0.000..0.000 rows=4.00 loops=112)
+                    Storage: Memory  Maximum Storage: 17kB
+                    Buffers: shared hit=5
+                    ->  Bitmap Heap Scan on room_members rm  (cost=22.03..32.57 rows=9 width=8) (actual time=0.009..0.009 rows=4.00 loops=1)
+                          Recheck Cond: (user_id = 1)
+                          Heap Blocks: exact=1
+                          Buffers: shared hit=5
+                          ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..22.03 rows=9 width=0) (actual time=0.007..0.007 rows=4.00 loops=1)
+                                Index Cond: (user_id = 1)
+                                Index Searches: 1
+                                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=327
+Planning Time: 0.551 ms
+Execution Time: 0.197 ms
+
+=== R27 run 2 ===
+GroupAggregate  (cost=436.34..522.75 rows=1 width=80) (actual time=0.161..0.161 rows=1.00 loops=1)
+  Buffers: shared hit=15
+  ->  Sort  (cost=436.34..447.14 rows=4320 width=64) (actual time=0.117..0.125 rows=448.00 loops=1)
+        Sort Key: (CASE WHEN (cp.due_date <= CURRENT_DATE) THEN cp.card_id ELSE NULL::integer END)
+        Sort Method: quicksort  Memory: 56kB
+        Buffers: shared hit=15
+        ->  Nested Loop Left Join  (cost=26.39..175.48 rows=4320 width=64) (actual time=0.036..0.082 rows=448.00 loops=1)
+              Buffers: shared hit=12
+              ->  Nested Loop Left Join  (cost=4.36..88.89 rows=480 width=60) (actual time=0.022..0.034 rows=112.00 loops=1)
+                    Buffers: shared hit=7
+                    ->  Nested Loop Left Join  (cost=0.15..68.49 rows=60 width=52) (actual time=0.015..0.020 rows=14.00 loops=1)
+                          Buffers: shared hit=5
+                          ->  Nested Loop Left Join  (cost=0.15..45.23 rows=12 width=48) (actual time=0.011..0.015 rows=14.00 loops=1)
+                                Buffers: shared hit=4
+                                ->  Nested Loop Left Join  (cost=0.15..26.07 rows=3 width=44) (actual time=0.007..0.009 rows=14.00 loops=1)
+                                      Buffers: shared hit=3
+                                      ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=40) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                            Index Cond: (user_id = 1)
+                                            Index Searches: 1
+                                            Buffers: shared hit=2
+                                      ->  Seq Scan on points_events pe  (cost=0.00..17.88 rows=3 width=8) (actual time=0.004..0.005 rows=14.00 loops=1)
+                                            Filter: (user_id = 1)
+                                            Rows Removed by Filter: 15
+                                            Buffers: shared hit=1
+                                ->  Materialize  (cost=0.00..19.02 rows=4 width=8) (actual time=0.000..0.000 rows=0.00 loops=14)
+                                      Storage: Memory  Maximum Storage: 17kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=8) (actual time=0.002..0.002 rows=0.00 loops=1)
+                                            Filter: (author_id = 1)
+                                            Rows Removed by Filter: 2
+                                            Buffers: shared hit=1
+                          ->  Materialize  (cost=0.00..22.52 rows=5 width=8) (actual time=0.000..0.000 rows=1.00 loops=14)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on answers a  (cost=0.00..22.50 rows=5 width=8) (actual time=0.001..0.002 rows=1.00 loops=1)
+                                      Filter: (author_id = 1)
+                                      Rows Removed by Filter: 1
+                                      Buffers: shared hit=1
+                    ->  Materialize  (cost=4.21..14.41 rows=8 width=12) (actual time=0.000..0.001 rows=8.00 loops=14)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=2
+                          ->  Bitmap Heap Scan on card_progress cp  (cost=4.21..14.37 rows=8 width=12) (actual time=0.005..0.005 rows=8.00 loops=1)
+                                Recheck Cond: (user_id = 1)
+                                Heap Blocks: exact=1
+                                Buffers: shared hit=2
+                                ->  Bitmap Index Scan on card_progress_pkey  (cost=0.00..4.21 rows=8 width=0) (actual time=0.001..0.001 rows=8.00 loops=1)
+                                      Index Cond: (user_id = 1)
+                                      Index Searches: 1
+                                      Buffers: shared hit=1
+              ->  Materialize  (cost=22.03..32.62 rows=9 width=8) (actual time=0.000..0.000 rows=4.00 loops=112)
+                    Storage: Memory  Maximum Storage: 17kB
+                    Buffers: shared hit=5
+                    ->  Bitmap Heap Scan on room_members rm  (cost=22.03..32.57 rows=9 width=8) (actual time=0.009..0.010 rows=4.00 loops=1)
+                          Recheck Cond: (user_id = 1)
+                          Heap Blocks: exact=1
+                          Buffers: shared hit=5
+                          ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..22.03 rows=9 width=0) (actual time=0.007..0.007 rows=4.00 loops=1)
+                                Index Cond: (user_id = 1)
+                                Index Searches: 1
+                                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=327
+Planning Time: 0.563 ms
+Execution Time: 0.208 ms
+
+=== R27 run 3 ===
+GroupAggregate  (cost=436.34..522.75 rows=1 width=80) (actual time=0.174..0.175 rows=1.00 loops=1)
+  Buffers: shared hit=15
+  ->  Sort  (cost=436.34..447.14 rows=4320 width=64) (actual time=0.130..0.138 rows=448.00 loops=1)
+        Sort Key: (CASE WHEN (cp.due_date <= CURRENT_DATE) THEN cp.card_id ELSE NULL::integer END)
+        Sort Method: quicksort  Memory: 56kB
+        Buffers: shared hit=15
+        ->  Nested Loop Left Join  (cost=26.39..175.48 rows=4320 width=64) (actual time=0.041..0.091 rows=448.00 loops=1)
+              Buffers: shared hit=12
+              ->  Nested Loop Left Join  (cost=4.36..88.89 rows=480 width=60) (actual time=0.026..0.039 rows=112.00 loops=1)
+                    Buffers: shared hit=7
+                    ->  Nested Loop Left Join  (cost=0.15..68.49 rows=60 width=52) (actual time=0.017..0.022 rows=14.00 loops=1)
+                          Buffers: shared hit=5
+                          ->  Nested Loop Left Join  (cost=0.15..45.23 rows=12 width=48) (actual time=0.014..0.017 rows=14.00 loops=1)
+                                Buffers: shared hit=4
+                                ->  Nested Loop Left Join  (cost=0.15..26.07 rows=3 width=44) (actual time=0.009..0.010 rows=14.00 loops=1)
+                                      Buffers: shared hit=3
+                                      ->  Index Scan using users_pkey on users u  (cost=0.15..8.17 rows=1 width=40) (actual time=0.003..0.003 rows=1.00 loops=1)
+                                            Index Cond: (user_id = 1)
+                                            Index Searches: 1
+                                            Buffers: shared hit=2
+                                      ->  Seq Scan on points_events pe  (cost=0.00..17.88 rows=3 width=8) (actual time=0.005..0.006 rows=14.00 loops=1)
+                                            Filter: (user_id = 1)
+                                            Rows Removed by Filter: 15
+                                            Buffers: shared hit=1
+                                ->  Materialize  (cost=0.00..19.02 rows=4 width=8) (actual time=0.000..0.000 rows=0.00 loops=14)
+                                      Storage: Memory  Maximum Storage: 17kB
+                                      Buffers: shared hit=1
+                                      ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=8) (actual time=0.003..0.003 rows=0.00 loops=1)
+                                            Filter: (author_id = 1)
+                                            Rows Removed by Filter: 2
+                                            Buffers: shared hit=1
+                          ->  Materialize  (cost=0.00..22.52 rows=5 width=8) (actual time=0.000..0.000 rows=1.00 loops=14)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on answers a  (cost=0.00..22.50 rows=5 width=8) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                      Filter: (author_id = 1)
+                                      Rows Removed by Filter: 1
+                                      Buffers: shared hit=1
+                    ->  Materialize  (cost=4.21..14.41 rows=8 width=12) (actual time=0.001..0.001 rows=8.00 loops=14)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=2
+                          ->  Bitmap Heap Scan on card_progress cp  (cost=4.21..14.37 rows=8 width=12) (actual time=0.006..0.006 rows=8.00 loops=1)
+                                Recheck Cond: (user_id = 1)
+                                Heap Blocks: exact=1
+                                Buffers: shared hit=2
+                                ->  Bitmap Index Scan on card_progress_pkey  (cost=0.00..4.21 rows=8 width=0) (actual time=0.001..0.001 rows=8.00 loops=1)
+                                      Index Cond: (user_id = 1)
+                                      Index Searches: 1
+                                      Buffers: shared hit=1
+              ->  Materialize  (cost=22.03..32.62 rows=9 width=8) (actual time=0.000..0.000 rows=4.00 loops=112)
+                    Storage: Memory  Maximum Storage: 17kB
+                    Buffers: shared hit=5
+                    ->  Bitmap Heap Scan on room_members rm  (cost=22.03..32.57 rows=9 width=8) (actual time=0.010..0.010 rows=4.00 loops=1)
+                          Recheck Cond: (user_id = 1)
+                          Heap Blocks: exact=1
+                          Buffers: shared hit=5
+                          ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..22.03 rows=9 width=0) (actual time=0.008..0.008 rows=4.00 loops=1)
+                                Index Cond: (user_id = 1)
+                                Index Searches: 1
+                                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=327
+Planning Time: 0.593 ms
+Execution Time: 0.221 ms

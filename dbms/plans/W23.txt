@@ -1,0 +1,41 @@
+=== W23 run 1 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.004..0.004 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=38) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Filter: (author_id = 2)
+        Rows Removed by Filter: 1
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.166 ms
+Execution Time: 0.049 ms
+
+=== W23 run 2 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.004..0.004 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=38) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Filter: (author_id = 2)
+        Rows Removed by Filter: 1
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.167 ms
+Execution Time: 0.048 ms
+
+=== W23 run 3 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.003..0.004 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using answers_pkey on answers  (cost=0.15..8.17 rows=1 width=38) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (answer_id = 1)
+        Filter: (author_id = 2)
+        Rows Removed by Filter: 1
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.154 ms
+Execution Time: 0.046 ms

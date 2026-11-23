@@ -1,0 +1,143 @@
+=== R08 run 1 ===
+GroupAggregate  (cost=58.89..59.79 rows=36 width=180) (actual time=0.055..0.057 rows=4.00 loops=1)
+  Group Key: my_rm.joined_at, r.room_id, s.name, u.name
+  Buffers: shared hit=39
+  ->  Sort  (cost=58.89..58.98 rows=36 width=176) (actual time=0.052..0.053 rows=18.00 loops=1)
+        Sort Key: my_rm.joined_at DESC, r.room_id, s.name, u.name
+        Sort Method: quicksort  Memory: 28kB
+        Buffers: shared hit=39
+        ->  Nested Loop Left Join  (cost=33.14..57.96 rows=36 width=176) (actual time=0.030..0.038 rows=18.00 loops=1)
+              Buffers: shared hit=30
+              ->  Nested Loop  (cost=32.99..53.42 rows=9 width=172) (actual time=0.025..0.029 rows=4.00 loops=1)
+                    Buffers: shared hit=22
+                    ->  Nested Loop  (cost=32.84..50.97 rows=9 width=144) (actual time=0.022..0.024 rows=4.00 loops=1)
+                          Buffers: shared hit=14
+                          ->  Hash Join  (cost=32.68..48.50 rows=9 width=116) (actual time=0.020..0.021 rows=4.00 loops=1)
+                                Hash Cond: (r.room_id = my_rm.room_id)
+                                Buffers: shared hit=6
+                                ->  Seq Scan on rooms r  (cost=0.00..14.60 rows=460 width=108) (actual time=0.004..0.004 rows=4.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=32.57..32.57 rows=9 width=12) (actual time=0.012..0.013 rows=4.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=5
+                                      ->  Bitmap Heap Scan on room_members my_rm  (cost=22.03..32.57 rows=9 width=12) (actual time=0.010..0.011 rows=4.00 loops=1)
+                                            Recheck Cond: (user_id = 1)
+                                            Heap Blocks: exact=1
+                                            Buffers: shared hit=5
+                                            ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..22.03 rows=9 width=0) (actual time=0.007..0.007 rows=4.00 loops=1)
+                                                  Index Cond: (user_id = 1)
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=4
+                          ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..0.27 rows=1 width=36) (actual time=0.001..0.001 rows=1.00 loops=4)
+                                Index Cond: (subject_id = r.subject_id)
+                                Index Searches: 4
+                                Buffers: shared hit=8
+                    ->  Index Scan using users_pkey on users u  (cost=0.15..0.27 rows=1 width=36) (actual time=0.001..0.001 rows=1.00 loops=4)
+                          Index Cond: (user_id = r.owner_id)
+                          Index Searches: 4
+                          Buffers: shared hit=8
+              ->  Index Only Scan using room_members_pkey on room_members all_rm  (cost=0.15..0.41 rows=9 width=8) (actual time=0.001..0.002 rows=4.50 loops=4)
+                    Index Cond: (room_id = r.room_id)
+                    Heap Fetches: 18
+                    Index Searches: 4
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=238
+Planning Time: 0.469 ms
+Execution Time: 0.099 ms
+
+=== R08 run 2 ===
+GroupAggregate  (cost=58.89..59.79 rows=36 width=180) (actual time=0.054..0.056 rows=4.00 loops=1)
+  Group Key: my_rm.joined_at, r.room_id, s.name, u.name
+  Buffers: shared hit=39
+  ->  Sort  (cost=58.89..58.98 rows=36 width=176) (actual time=0.051..0.051 rows=18.00 loops=1)
+        Sort Key: my_rm.joined_at DESC, r.room_id, s.name, u.name
+        Sort Method: quicksort  Memory: 28kB
+        Buffers: shared hit=39
+        ->  Nested Loop Left Join  (cost=33.14..57.96 rows=36 width=176) (actual time=0.030..0.037 rows=18.00 loops=1)
+              Buffers: shared hit=30
+              ->  Nested Loop  (cost=32.99..53.42 rows=9 width=172) (actual time=0.026..0.029 rows=4.00 loops=1)
+                    Buffers: shared hit=22
+                    ->  Nested Loop  (cost=32.84..50.97 rows=9 width=144) (actual time=0.022..0.024 rows=4.00 loops=1)
+                          Buffers: shared hit=14
+                          ->  Hash Join  (cost=32.68..48.50 rows=9 width=116) (actual time=0.020..0.021 rows=4.00 loops=1)
+                                Hash Cond: (r.room_id = my_rm.room_id)
+                                Buffers: shared hit=6
+                                ->  Seq Scan on rooms r  (cost=0.00..14.60 rows=460 width=108) (actual time=0.004..0.004 rows=4.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=32.57..32.57 rows=9 width=12) (actual time=0.012..0.012 rows=4.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=5
+                                      ->  Bitmap Heap Scan on room_members my_rm  (cost=22.03..32.57 rows=9 width=12) (actual time=0.010..0.010 rows=4.00 loops=1)
+                                            Recheck Cond: (user_id = 1)
+                                            Heap Blocks: exact=1
+                                            Buffers: shared hit=5
+                                            ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..22.03 rows=9 width=0) (actual time=0.007..0.007 rows=4.00 loops=1)
+                                                  Index Cond: (user_id = 1)
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=4
+                          ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..0.27 rows=1 width=36) (actual time=0.001..0.001 rows=1.00 loops=4)
+                                Index Cond: (subject_id = r.subject_id)
+                                Index Searches: 4
+                                Buffers: shared hit=8
+                    ->  Index Scan using users_pkey on users u  (cost=0.15..0.27 rows=1 width=36) (actual time=0.001..0.001 rows=1.00 loops=4)
+                          Index Cond: (user_id = r.owner_id)
+                          Index Searches: 4
+                          Buffers: shared hit=8
+              ->  Index Only Scan using room_members_pkey on room_members all_rm  (cost=0.15..0.41 rows=9 width=8) (actual time=0.001..0.001 rows=4.50 loops=4)
+                    Index Cond: (room_id = r.room_id)
+                    Heap Fetches: 18
+                    Index Searches: 4
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=238
+Planning Time: 0.469 ms
+Execution Time: 0.098 ms
+
+=== R08 run 3 ===
+GroupAggregate  (cost=58.89..59.79 rows=36 width=180) (actual time=0.054..0.057 rows=4.00 loops=1)
+  Group Key: my_rm.joined_at, r.room_id, s.name, u.name
+  Buffers: shared hit=39
+  ->  Sort  (cost=58.89..58.98 rows=36 width=176) (actual time=0.051..0.052 rows=18.00 loops=1)
+        Sort Key: my_rm.joined_at DESC, r.room_id, s.name, u.name
+        Sort Method: quicksort  Memory: 28kB
+        Buffers: shared hit=39
+        ->  Nested Loop Left Join  (cost=33.14..57.96 rows=36 width=176) (actual time=0.032..0.038 rows=18.00 loops=1)
+              Buffers: shared hit=30
+              ->  Nested Loop  (cost=32.99..53.42 rows=9 width=172) (actual time=0.026..0.030 rows=4.00 loops=1)
+                    Buffers: shared hit=22
+                    ->  Nested Loop  (cost=32.84..50.97 rows=9 width=144) (actual time=0.022..0.025 rows=4.00 loops=1)
+                          Buffers: shared hit=14
+                          ->  Hash Join  (cost=32.68..48.50 rows=9 width=116) (actual time=0.020..0.021 rows=4.00 loops=1)
+                                Hash Cond: (r.room_id = my_rm.room_id)
+                                Buffers: shared hit=6
+                                ->  Seq Scan on rooms r  (cost=0.00..14.60 rows=460 width=108) (actual time=0.004..0.004 rows=4.00 loops=1)
+                                      Buffers: shared hit=1
+                                ->  Hash  (cost=32.57..32.57 rows=9 width=12) (actual time=0.013..0.013 rows=4.00 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=5
+                                      ->  Bitmap Heap Scan on room_members my_rm  (cost=22.03..32.57 rows=9 width=12) (actual time=0.010..0.011 rows=4.00 loops=1)
+                                            Recheck Cond: (user_id = 1)
+                                            Heap Blocks: exact=1
+                                            Buffers: shared hit=5
+                                            ->  Bitmap Index Scan on room_members_pkey  (cost=0.00..22.03 rows=9 width=0) (actual time=0.007..0.007 rows=4.00 loops=1)
+                                                  Index Cond: (user_id = 1)
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=4
+                          ->  Index Scan using subjects_pkey on subjects s  (cost=0.15..0.27 rows=1 width=36) (actual time=0.001..0.001 rows=1.00 loops=4)
+                                Index Cond: (subject_id = r.subject_id)
+                                Index Searches: 4
+                                Buffers: shared hit=8
+                    ->  Index Scan using users_pkey on users u  (cost=0.15..0.27 rows=1 width=36) (actual time=0.001..0.001 rows=1.00 loops=4)
+                          Index Cond: (user_id = r.owner_id)
+                          Index Searches: 4
+                          Buffers: shared hit=8
+              ->  Index Only Scan using room_members_pkey on room_members all_rm  (cost=0.15..0.41 rows=9 width=8) (actual time=0.001..0.002 rows=4.50 loops=4)
+                    Index Cond: (room_id = r.room_id)
+                    Heap Fetches: 18
+                    Index Searches: 4
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=238
+Planning Time: 0.497 ms
+Execution Time: 0.107 ms

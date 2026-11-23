@@ -176,7 +176,7 @@ WHERE room_id = 1;
 
 -- @W09 -- WRITE
 DELETE FROM rooms
-WHERE room_id = 1;
+WHERE room_id = 4;
 
 -- @R10 -- READ
 SELECT d.deck_id,

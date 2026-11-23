@@ -1,0 +1,146 @@
+=== R21 run 1 ===
+Sort  (cost=101.65..101.67 rows=9 width=94) (actual time=0.050..0.051 rows=1.00 loops=1)
+  Sort Key: a.is_accepted DESC, (count(au.user_id)) DESC, a.created_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=18
+  ->  GroupAggregate  (cost=101.30..101.51 rows=9 width=94) (actual time=0.041..0.042 rows=1.00 loops=1)
+        Group Key: a.answer_id, u.user_id
+        Buffers: shared hit=7
+        ->  Sort  (cost=101.30..101.33 rows=9 width=93) (actual time=0.038..0.038 rows=4.00 loops=1)
+              Sort Key: a.answer_id, u.user_id
+              Sort Method: quicksort  Memory: 27kB
+              Buffers: shared hit=7
+              ->  Hash Right Join  (cost=65.63..101.16 rows=9 width=93) (actual time=0.028..0.031 rows=4.00 loops=1)
+                    Hash Cond: (au.answer_id = a.answer_id)
+                    Buffers: shared hit=4
+                    ->  Seq Scan on answer_upvotes au  (cost=0.00..28.50 rows=1850 width=8) (actual time=0.004..0.004 rows=7.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=65.57..65.57 rows=5 width=89) (actual time=0.020..0.021 rows=1.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  Nested Loop Left Join  (cost=22.73..65.57 rows=5 width=89) (actual time=0.018..0.020 rows=1.00 loops=1)
+                                Buffers: shared hit=3
+                                ->  Hash Join  (cost=22.56..40.59 rows=5 width=85) (actual time=0.014..0.015 rows=1.00 loops=1)
+                                      Hash Cond: (u.user_id = a.author_id)
+                                      Buffers: shared hit=2
+                                      ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.004 rows=6.00 loops=1)
+                                            Buffers: shared hit=1
+                                      ->  Hash  (cost=22.50..22.50 rows=5 width=53) (actual time=0.006..0.006 rows=1.00 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                            Buffers: shared hit=1
+                                            ->  Seq Scan on answers a  (cost=0.00..22.50 rows=5 width=53) (actual time=0.004..0.004 rows=1.00 loops=1)
+                                                  Filter: (doubt_id = 1)
+                                                  Rows Removed by Filter: 1
+                                                  Buffers: shared hit=1
+                                ->  Memoize  (cost=0.16..4.98 rows=1 width=8) (actual time=0.004..0.004 rows=0.00 loops=1)
+                                      Cache Key: a.answer_id
+                                      Cache Mode: logical
+                                      Hits: 0  Misses: 1  Evictions: 0  Overflows: 0  Memory Usage: 1kB
+                                      Buffers: shared hit=1
+                                      ->  Index Only Scan using answer_upvotes_pkey on answer_upvotes my_vote  (cost=0.15..4.97 rows=1 width=8) (actual time=0.003..0.003 rows=0.00 loops=1)
+                                            Index Cond: ((answer_id = a.answer_id) AND (user_id = 1))
+                                            Heap Fetches: 0
+                                            Index Searches: 1
+                                            Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=218
+Planning Time: 0.440 ms
+Execution Time: 0.096 ms
+
+=== R21 run 2 ===
+Sort  (cost=101.65..101.67 rows=9 width=94) (actual time=0.041..0.042 rows=1.00 loops=1)
+  Sort Key: a.is_accepted DESC, (count(au.user_id)) DESC, a.created_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=18
+  ->  GroupAggregate  (cost=101.30..101.51 rows=9 width=94) (actual time=0.034..0.035 rows=1.00 loops=1)
+        Group Key: a.answer_id, u.user_id
+        Buffers: shared hit=7
+        ->  Sort  (cost=101.30..101.33 rows=9 width=93) (actual time=0.031..0.031 rows=4.00 loops=1)
+              Sort Key: a.answer_id, u.user_id
+              Sort Method: quicksort  Memory: 27kB
+              Buffers: shared hit=7
+              ->  Hash Right Join  (cost=65.63..101.16 rows=9 width=93) (actual time=0.022..0.025 rows=4.00 loops=1)
+                    Hash Cond: (au.answer_id = a.answer_id)
+                    Buffers: shared hit=4
+                    ->  Seq Scan on answer_upvotes au  (cost=0.00..28.50 rows=1850 width=8) (actual time=0.003..0.003 rows=7.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=65.57..65.57 rows=5 width=89) (actual time=0.016..0.017 rows=1.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  Nested Loop Left Join  (cost=22.73..65.57 rows=5 width=89) (actual time=0.015..0.016 rows=1.00 loops=1)
+                                Buffers: shared hit=3
+                                ->  Hash Join  (cost=22.56..40.59 rows=5 width=85) (actual time=0.010..0.011 rows=1.00 loops=1)
+                                      Hash Cond: (u.user_id = a.author_id)
+                                      Buffers: shared hit=2
+                                      ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                            Buffers: shared hit=1
+                                      ->  Hash  (cost=22.50..22.50 rows=5 width=53) (actual time=0.004..0.004 rows=1.00 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                            Buffers: shared hit=1
+                                            ->  Seq Scan on answers a  (cost=0.00..22.50 rows=5 width=53) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                                  Filter: (doubt_id = 1)
+                                                  Rows Removed by Filter: 1
+                                                  Buffers: shared hit=1
+                                ->  Memoize  (cost=0.16..4.98 rows=1 width=8) (actual time=0.004..0.004 rows=0.00 loops=1)
+                                      Cache Key: a.answer_id
+                                      Cache Mode: logical
+                                      Hits: 0  Misses: 1  Evictions: 0  Overflows: 0  Memory Usage: 1kB
+                                      Buffers: shared hit=1
+                                      ->  Index Only Scan using answer_upvotes_pkey on answer_upvotes my_vote  (cost=0.15..4.97 rows=1 width=8) (actual time=0.003..0.003 rows=0.00 loops=1)
+                                            Index Cond: ((answer_id = a.answer_id) AND (user_id = 1))
+                                            Heap Fetches: 0
+                                            Index Searches: 1
+                                            Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=218
+Planning Time: 0.367 ms
+Execution Time: 0.080 ms
+
+=== R21 run 3 ===
+Sort  (cost=101.65..101.67 rows=9 width=94) (actual time=0.042..0.043 rows=1.00 loops=1)
+  Sort Key: a.is_accepted DESC, (count(au.user_id)) DESC, a.created_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=18
+  ->  GroupAggregate  (cost=101.30..101.51 rows=9 width=94) (actual time=0.035..0.035 rows=1.00 loops=1)
+        Group Key: a.answer_id, u.user_id
+        Buffers: shared hit=7
+        ->  Sort  (cost=101.30..101.33 rows=9 width=93) (actual time=0.031..0.032 rows=4.00 loops=1)
+              Sort Key: a.answer_id, u.user_id
+              Sort Method: quicksort  Memory: 27kB
+              Buffers: shared hit=7
+              ->  Hash Right Join  (cost=65.63..101.16 rows=9 width=93) (actual time=0.022..0.025 rows=4.00 loops=1)
+                    Hash Cond: (au.answer_id = a.answer_id)
+                    Buffers: shared hit=4
+                    ->  Seq Scan on answer_upvotes au  (cost=0.00..28.50 rows=1850 width=8) (actual time=0.003..0.004 rows=7.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=65.57..65.57 rows=5 width=89) (actual time=0.016..0.016 rows=1.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  Nested Loop Left Join  (cost=22.73..65.57 rows=5 width=89) (actual time=0.014..0.015 rows=1.00 loops=1)
+                                Buffers: shared hit=3
+                                ->  Hash Join  (cost=22.56..40.59 rows=5 width=85) (actual time=0.010..0.011 rows=1.00 loops=1)
+                                      Hash Cond: (u.user_id = a.author_id)
+                                      Buffers: shared hit=2
+                                      ->  Seq Scan on users u  (cost=0.00..15.80 rows=580 width=36) (actual time=0.003..0.003 rows=6.00 loops=1)
+                                            Buffers: shared hit=1
+                                      ->  Hash  (cost=22.50..22.50 rows=5 width=53) (actual time=0.004..0.004 rows=1.00 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                            Buffers: shared hit=1
+                                            ->  Seq Scan on answers a  (cost=0.00..22.50 rows=5 width=53) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                                  Filter: (doubt_id = 1)
+                                                  Rows Removed by Filter: 1
+                                                  Buffers: shared hit=1
+                                ->  Memoize  (cost=0.16..4.98 rows=1 width=8) (actual time=0.003..0.003 rows=0.00 loops=1)
+                                      Cache Key: a.answer_id
+                                      Cache Mode: logical
+                                      Hits: 0  Misses: 1  Evictions: 0  Overflows: 0  Memory Usage: 1kB
+                                      Buffers: shared hit=1
+                                      ->  Index Only Scan using answer_upvotes_pkey on answer_upvotes my_vote  (cost=0.15..4.97 rows=1 width=8) (actual time=0.003..0.003 rows=0.00 loops=1)
+                                            Index Cond: ((answer_id = a.answer_id) AND (user_id = 1))
+                                            Heap Fetches: 0
+                                            Index Searches: 1
+                                            Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=218
+Planning Time: 0.375 ms
+Execution Time: 0.081 ms

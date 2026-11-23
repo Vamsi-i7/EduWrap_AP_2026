@@ -1,0 +1,29 @@
+=== W04 run 1 ===
+Insert on subjects  (cost=0.00..0.01 rows=1 width=36) (actual time=0.079..0.079 rows=1.00 loops=1)
+  Buffers: shared hit=59
+  ->  Result  (cost=0.00..0.01 rows=1 width=36) (actual time=0.016..0.016 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.023 ms
+Execution Time: 0.093 ms
+
+=== W04 run 2 ===
+Insert on subjects  (cost=0.00..0.01 rows=1 width=36) (actual time=0.069..0.069 rows=1.00 loops=1)
+  Buffers: shared hit=59
+  ->  Result  (cost=0.00..0.01 rows=1 width=36) (actual time=0.015..0.015 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.022 ms
+Execution Time: 0.083 ms
+
+=== W04 run 3 ===
+Insert on subjects  (cost=0.00..0.01 rows=1 width=36) (actual time=0.069..0.070 rows=1.00 loops=1)
+  Buffers: shared hit=59
+  ->  Result  (cost=0.00..0.01 rows=1 width=36) (actual time=0.015..0.015 rows=1.00 loops=1)
+        Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.024 ms
+Execution Time: 0.084 ms

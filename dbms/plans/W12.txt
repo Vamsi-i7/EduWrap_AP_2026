@@ -1,0 +1,41 @@
+=== W12 run 1 ===
+Delete on decks  (cost=0.15..8.17 rows=0 width=0) (actual time=0.032..0.032 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using decks_pkey on decks  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (deck_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.139 ms
+Trigger for constraint cards_deck_id_fkey on decks: time=0.107 calls=1
+Trigger for constraint card_progress_card_id_fkey on cards: time=0.117 calls=5
+Execution Time: 0.302 ms
+
+=== W12 run 2 ===
+Delete on decks  (cost=0.15..8.17 rows=0 width=0) (actual time=0.032..0.032 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using decks_pkey on decks  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (deck_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.139 ms
+Trigger for constraint cards_deck_id_fkey on decks: time=0.110 calls=1
+Trigger for constraint card_progress_card_id_fkey on cards: time=0.110 calls=5
+Execution Time: 0.297 ms
+
+=== W12 run 3 ===
+Delete on decks  (cost=0.15..8.17 rows=0 width=0) (actual time=0.029..0.029 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using decks_pkey on decks  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (deck_id = 1)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=79
+Planning Time: 0.134 ms
+Trigger for constraint cards_deck_id_fkey on decks: time=0.102 calls=1
+Trigger for constraint card_progress_card_id_fkey on cards: time=0.100 calls=5
+Execution Time: 0.276 ms

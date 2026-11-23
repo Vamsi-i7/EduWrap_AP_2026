@@ -1,0 +1,38 @@
+=== W25 run 1 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.065..0.065 rows=0.00 loops=1)
+  Buffers: shared hit=24
+  ->  Index Scan using uq_one_accepted_answer on answers  (cost=0.15..8.17 rows=1 width=7) (actual time=0.014..0.014 rows=1.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Filter: is_accepted
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.177 ms
+Execution Time: 0.109 ms
+
+=== W25 run 2 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.059..0.059 rows=0.00 loops=1)
+  Buffers: shared hit=25
+  ->  Index Scan using uq_one_accepted_answer on answers  (cost=0.15..8.17 rows=1 width=7) (actual time=0.005..0.006 rows=1.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Filter: is_accepted
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.170 ms
+Execution Time: 0.106 ms
+
+=== W25 run 3 ===
+Update on answers  (cost=0.15..8.17 rows=0 width=0) (actual time=0.057..0.057 rows=0.00 loops=1)
+  Buffers: shared hit=25
+  ->  Index Scan using uq_one_accepted_answer on answers  (cost=0.15..8.17 rows=1 width=7) (actual time=0.006..0.006 rows=1.00 loops=1)
+        Index Cond: (doubt_id = 1)
+        Filter: is_accepted
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=89
+Planning Time: 0.162 ms
+Execution Time: 0.100 ms

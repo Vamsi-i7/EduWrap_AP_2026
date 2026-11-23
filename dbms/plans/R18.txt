@@ -1,0 +1,98 @@
+=== R18 run 1 ===
+Sort  (cost=56.06..56.06 rows=1 width=140) (actual time=0.019..0.019 rows=0.00 loops=1)
+  Sort Key: d.created_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  Nested Loop  (cost=19.35..56.05 rows=1 width=140) (actual time=0.013..0.013 rows=0.00 loops=1)
+        Buffers: shared hit=2
+        ->  Nested Loop  (cost=19.20..49.86 rows=1 width=112) (actual time=0.013..0.013 rows=0.00 loops=1)
+              Buffers: shared hit=2
+              ->  Hash Right Join  (cost=19.05..41.69 rows=1 width=84) (actual time=0.013..0.013 rows=0.00 loops=1)
+                    Hash Cond: (a.doubt_id = d.doubt_id)
+                    Filter: (a.answer_id IS NULL)
+                    Rows Removed by Filter: 2
+                    Buffers: shared hit=2
+                    ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=8) (actual time=0.002..0.002 rows=2.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=19.00..19.00 rows=4 width=84) (actual time=0.006..0.006 rows=2.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=84) (actual time=0.004..0.004 rows=2.00 loops=1)
+                                Filter: (room_id = 1)
+                                Buffers: shared hit=1
+              ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=36) (never executed)
+                    Index Cond: (room_id = 1)
+                    Index Searches: 0
+        ->  Index Scan using users_pkey on users u  (cost=0.15..6.17 rows=1 width=36) (never executed)
+              Index Cond: (user_id = d.author_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=313
+Planning Time: 0.420 ms
+Execution Time: 0.045 ms
+
+=== R18 run 2 ===
+Sort  (cost=56.06..56.06 rows=1 width=140) (actual time=0.018..0.018 rows=0.00 loops=1)
+  Sort Key: d.created_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  Nested Loop  (cost=19.35..56.05 rows=1 width=140) (actual time=0.012..0.013 rows=0.00 loops=1)
+        Buffers: shared hit=2
+        ->  Nested Loop  (cost=19.20..49.86 rows=1 width=112) (actual time=0.012..0.012 rows=0.00 loops=1)
+              Buffers: shared hit=2
+              ->  Hash Right Join  (cost=19.05..41.69 rows=1 width=84) (actual time=0.012..0.012 rows=0.00 loops=1)
+                    Hash Cond: (a.doubt_id = d.doubt_id)
+                    Filter: (a.answer_id IS NULL)
+                    Rows Removed by Filter: 2
+                    Buffers: shared hit=2
+                    ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=8) (actual time=0.002..0.002 rows=2.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=19.00..19.00 rows=4 width=84) (actual time=0.006..0.006 rows=2.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=84) (actual time=0.003..0.003 rows=2.00 loops=1)
+                                Filter: (room_id = 1)
+                                Buffers: shared hit=1
+              ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=36) (never executed)
+                    Index Cond: (room_id = 1)
+                    Index Searches: 0
+        ->  Index Scan using users_pkey on users u  (cost=0.15..6.17 rows=1 width=36) (never executed)
+              Index Cond: (user_id = d.author_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=313
+Planning Time: 0.403 ms
+Execution Time: 0.041 ms
+
+=== R18 run 3 ===
+Sort  (cost=56.06..56.06 rows=1 width=140) (actual time=0.019..0.019 rows=0.00 loops=1)
+  Sort Key: d.created_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  Nested Loop  (cost=19.35..56.05 rows=1 width=140) (actual time=0.013..0.014 rows=0.00 loops=1)
+        Buffers: shared hit=2
+        ->  Nested Loop  (cost=19.20..49.86 rows=1 width=112) (actual time=0.013..0.013 rows=0.00 loops=1)
+              Buffers: shared hit=2
+              ->  Hash Right Join  (cost=19.05..41.69 rows=1 width=84) (actual time=0.013..0.013 rows=0.00 loops=1)
+                    Hash Cond: (a.doubt_id = d.doubt_id)
+                    Filter: (a.answer_id IS NULL)
+                    Rows Removed by Filter: 2
+                    Buffers: shared hit=2
+                    ->  Seq Scan on answers a  (cost=0.00..20.00 rows=1000 width=8) (actual time=0.002..0.002 rows=2.00 loops=1)
+                          Buffers: shared hit=1
+                    ->  Hash  (cost=19.00..19.00 rows=4 width=84) (actual time=0.007..0.007 rows=2.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on doubts d  (cost=0.00..19.00 rows=4 width=84) (actual time=0.003..0.004 rows=2.00 loops=1)
+                                Filter: (room_id = 1)
+                                Buffers: shared hit=1
+              ->  Index Scan using rooms_pkey on rooms r  (cost=0.15..8.17 rows=1 width=36) (never executed)
+                    Index Cond: (room_id = 1)
+                    Index Searches: 0
+        ->  Index Scan using users_pkey on users u  (cost=0.15..6.17 rows=1 width=36) (never executed)
+              Index Cond: (user_id = d.author_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=313
+Planning Time: 0.430 ms
+Execution Time: 0.044 ms
